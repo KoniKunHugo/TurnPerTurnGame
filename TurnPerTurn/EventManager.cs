@@ -10,5 +10,17 @@ public static class EventManager
 {
     public static event Action OnTakeDamage;
     public static event Action OnDeath;
+
+
+
+
+
+
+
+    public static void UpadateSlider()
+    {
+        Console.WriteLine("oui");
+    }
+
 }
 
