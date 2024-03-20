@@ -4,6 +4,7 @@ public class Entity
     public int Damage;
     public int Speed;
     public int Evade;
+    public int level;
 
     public event Action OnTakeDamage;
     public event Action OnDeath;
@@ -33,7 +34,6 @@ public class Entity
 
     public void UpadateDeath()
     {
-        Console.WriteLine("dead");
         this.OnTakeDamage -= this.UpadateDeath;
         this.OnDeath -= this.UpadateDeath;
     }
