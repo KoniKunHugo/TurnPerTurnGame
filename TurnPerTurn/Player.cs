@@ -1,37 +1,24 @@
-class Player
+using System.Xml.XPath;
+
+class Player : Entity
 {
+    public int XP;
+    public int Level;
+    public string Name;
 
-    public 
-        Player() 
+
+    public void LevelUp()
     {
-        string name;
-        int level = 1;
-        int xp = 0;
-        int Damage = 10;
-        int Speed = 10;
-        int Evade = 5;
-    }
-
-    public event Action OnTakeDamage;
-
-    public void TakeDamage(int amount)
-    {
-        OnTakeDamage?.Invoke();
-        int hp = 0;
-        if (hp == 0) 
+        if (XP == 100)
         {
-            //Player.OnPlayerDeath += UpdateSlider;
-            //Player.OnPlayerDeath -= UpdateSlider;
+            Level += 1;
+            Damage = Damage + 5;
+            Speed = Speed + 5;
+            Evade = Evade + 2;
         }
     }
 
-    public event Action OnPlayerDeath;
-
-    private 
-        int PV;
-        int Str;
-
-    private void UpdateSlider()
+    private void Temp()
     {
 
     }

@@ -17,7 +17,7 @@ public static class EventManager
 
 
 
-    public static void UpadateSlider()
+    public static void UpdateSlider()
     {
         Console.WriteLine("oui");
     }

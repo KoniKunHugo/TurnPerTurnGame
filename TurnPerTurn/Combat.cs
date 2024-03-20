@@ -1,43 +1,79 @@
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+
 class CombatPhase
 {
-    public event Action TriggerCombat;
-
+    public event Action OnTriggerCombat;
+    public event Action OnCombatEnd;
 
     public void EnterCombatPhase()
     {
-        TriggerCombat?.Invoke();
-        
-
+        OnTriggerCombat?.Invoke();
+        Console.WriteLine();
     }
 
-    public void DrawCombatScene(List)
+    public void Combat()
     {
-        Console.WriteLine(List);
-    }
-
-    public void Combat(int PlayerSpeed, int FoeSpeed)
-    {
-        Player player = new Player();
-        if (PlayerSpeed > FoeSpeed)
+        if (player.Speed > foes.Speed)
         {
             //PLAYER ACT FIRST
 
+            if (foes.Hp == 0 || player.Hp == 0)
+            {
+                UpdateExitCombat();
+            }
             //FOE ACT SECOND
+
+            if (foes.Hp == 0 || player.Hp == 0)
+            {
+                UpdateExitCombat();
+            }
         }
         else
         {
             //FOE ACT FIRST
             player.TakeDamage(50);
+            if (foes.Hp == 0 || player.Hp == 0)
+            {
+                UpdateExitCombat();
+            }
             //PLAYER ACT SECOND
+
+            if (foes.Hp == 0 || player.Hp == 0)
+            {
+                UpdateExitCombat();
+            }
         }
     }
 
-    public void ExitCombatPhase() 
-    {
+    public void ExitCombatPhase()
+                {
+                    OnCombatEnd?.Invoke();
+                    if (player.Hp == 0)
+                    {
+                        //Kill
+                    }
+                    else
+                    {
+                        player.XP += 50;
+                    }
+                }
+
+    public void UpdateExitCombat()
+                {
+                    this.OnCombatEnd += UpdateExitCombat;
+                    this.OnCombatEnd -= UpdateExitCombat;
+                }
         
-    }
 
-    private
+    public void UpdateEnterCombat() 
+                {
+                    this.OnTriggerCombat += UpdateEnterCombat;
+                    this.OnTriggerCombat -= UpdateEnterCombat;
+                }
 
-        List<string> CombatSceneList = new List<string>();
+
+    private Player player = new Player();
+    private Foes foes = new Foes();
+    private List<string> CombatSceneList = new List<string>();
 }

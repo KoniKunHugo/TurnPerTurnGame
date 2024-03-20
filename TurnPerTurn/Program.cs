@@ -1,6 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+class Program
+{
 
-Entity player = new Entity();
-player.OnTakeDamage += player.UpadateSlider;
-player.TakeDamage(50);
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("");
+        
+    }
+
+}

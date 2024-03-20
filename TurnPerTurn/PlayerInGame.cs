@@ -1,11 +1,10 @@
-class PlayerInGame
+class PlayerInGame 
 {
     public void PlayerAction()
     {
 
     }
 
-    private
-        List<PlayerInGame> Abilities;
+    private List<PlayerInGame> Abilities;
 
 }
