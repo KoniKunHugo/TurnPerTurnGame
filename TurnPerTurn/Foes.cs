@@ -34,4 +34,5 @@ public class Foes : Entity
             Damage = 7;
         }
         Console.WriteLine("entity set");
+    }
 }

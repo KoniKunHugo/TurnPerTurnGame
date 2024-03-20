@@ -14,7 +14,8 @@ class Player : Entity
         Hp = 20;
     }
 
-    protected
-    string name;
+    private string name;
     int xp;
+
+    public string Name { get => name; }
 }
