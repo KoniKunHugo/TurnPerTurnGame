@@ -2,8 +2,10 @@ public class Foes : Entity
 {
     int Type;
 
-    public void Entity()
+    public void Entity(int type)
     {
+        Type = type;
+
         Hp = 50;
         if (Type == 0) //Vitesse 
         {

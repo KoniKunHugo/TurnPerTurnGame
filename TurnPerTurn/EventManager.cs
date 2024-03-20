@@ -12,14 +12,14 @@ public static class EventManager
     public static event Action OnDeath;
 
 
-
-
-
-
-
-    public static void UpdateSlider()
+    public static void UpadateHit1()
     {
         Console.WriteLine("oui");
+    }
+
+    public static void UpadateDeath1()
+    {
+        Console.WriteLine("dead");
     }
 
 }
