@@ -13,9 +13,10 @@ public class Entity
     {
         Hp -= amount;
         OnTakeDamage.Invoke();
+        IsDead();
     }
 
-    public bool IsDead()
+    public void IsDead()
     {
         if (Hp <= 0) //dead
         {
@@ -23,15 +24,17 @@ public class Entity
             Speed = 0;
             Damage = 0;
             Evade = 0;
-            return true;
-        }
-        else 
-        {
-            return false;
         } 
     }
-    public void UpadateSlider()
+    public void UpadateHit()
     {
         Console.WriteLine("oui");
+    }
+
+    public void UpadateDeath()
+    {
+        Console.WriteLine("dead");
+        this.OnTakeDamage -= this.UpadateDeath;
+        this.OnDeath -= this.UpadateDeath;
     }
 }
