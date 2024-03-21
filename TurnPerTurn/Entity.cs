@@ -4,6 +4,7 @@ public class Entity
     public int Damage;
     public int Speed;
     public int Evade;
+    public int level;
 
     public event Action OnTakeDamage;
     public event Action OnDeath;
@@ -20,11 +21,11 @@ public class Entity
     {
         if (Hp <= 0) //dead
         {
-            OnDeath?.Invoke(); //previent toutes les classes concernés
+            OnDeath?.Invoke(); //previent toutes les classes concernÃ©s
             Speed = 0;
             Damage = 0;
-            Evade = 0;
-        } 
+            Evade = 0
+        }
     }
     public void UpadateHit()
     {
