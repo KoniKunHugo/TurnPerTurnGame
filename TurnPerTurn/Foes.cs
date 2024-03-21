@@ -3,12 +3,12 @@ using System.Xml.Linq;
 
 public class Foes : Entity
 {
-    int Type;
+    private int Type;
 
     public Foes(int type)
     {
         Type = type;
-        level = 1;
+        Level = 1;
         Hp = 20;
         this.SeTByType();
     }
