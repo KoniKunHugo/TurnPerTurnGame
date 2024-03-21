@@ -11,7 +11,6 @@ public class Input
 
 
 
-
     public static void IsInput()
     {
         ConsoleKeyInfo key;
@@ -129,3 +128,4 @@ public class Input
     }
 
 }
+
