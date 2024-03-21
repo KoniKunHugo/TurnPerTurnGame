@@ -128,7 +128,13 @@ class Program
                     Console.WriteLine("HP : " + player.Allies[0].Hp );
                     Console.WriteLine("Damage : " + player.Allies[0].Damage);
                     Console.WriteLine("Speed : " + player.Allies[0].Speed);
-                    Console.WriteLine("Experience : " + player.Allies[0].Xp);
+                    Console.WriteLine("Experience : " + player.Allies[0].Xp + " :\n");
+                    Console.WriteLine(" attaques :\n");
+                    for (int i = 0;i < player.Attacks.Count;i++) 
+                    {
+                        Console.WriteLine(player.Allies[0].Attacks[i].ToString());
+                    }
+                    
                 }
 
             }

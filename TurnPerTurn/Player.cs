@@ -7,6 +7,15 @@ class Player : Entity
     public string Name { get => name; }
     public int Xp { get => xp; set => xp = value; }
 
+    public string SpellOne = "KneeBreaker";
+    public string SpellTwo = "Uppercut";
+    public string SpellThree = "Flurrie Blows";
+    public string SpellFour = "Bulk Up";
+
+    private List<String> attacks;
+
+    public List<String> Attacks { get => attacks; set => attacks = value; }
+
     private List<Player> allies;
     public List<Player> Allies { get => allies; set => allies = value; }
     
@@ -20,7 +29,12 @@ class Player : Entity
         Speed = 10;
         Evade = 5;
         Hp = 20;
-        allies = new List<Player> {  };
+        allies = new List<Player> { };
         allies.Add(this);
+        attacks = new List<string> { };
+        attacks.Add(SpellOne);
+        attacks.Add(SpellTwo);
+        attacks.Add(SpellThree);
+        attacks.Add(SpellFour);
     }
 }
