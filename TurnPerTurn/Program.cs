@@ -36,6 +36,8 @@ class Program
         ennemy1.TakeDamage(50);
         Console.WriteLine("debut loop");
 
+        Items items = new Items();
+
         ConsoleKeyInfo key;
         bool paused = false;
         bool equipe = false;
@@ -136,7 +138,26 @@ class Program
                     }
                     
                 }
-
+            }
+            if (inventaire) //inventaire
+            {
+                Console.WriteLine("object de l'inventaire : ");
+                for (int i = 0; i < items.Objects.Count; i++)
+                {
+                    Console.Write(i + ")" + items.Objects[i].Name + " \n");
+                }
+                key = Console.ReadKey(true);
+                /*if (key.Key == ConsoleKey.D0 || key.Key == ConsoleKey.NumPad0)
+                {
+                    Console.Clear();
+                    Console.WriteLine(items.Objects[0].Name + " :\n");
+                    Console.WriteLine("Level : " + player.Allies[0].Level);
+                    Console.WriteLine("HP : " + player.Allies[0].Hp);
+                    Console.WriteLine("Damage : " + player.Allies[0].Damage);
+                    Console.WriteLine("Speed : " + player.Allies[0].Speed);
+                    Console.WriteLine("Experience : " + player.Allies[0].Xp + " :\n");
+                    Console.WriteLine(" attaques :\n");
+                }*/
             }
         }
     }
