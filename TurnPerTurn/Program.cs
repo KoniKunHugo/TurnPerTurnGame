@@ -24,7 +24,6 @@ class Program
         } while (isName == false);
 
         Player player = new Player(_name);
-        //player.AddList(player);
         Console.WriteLine("ton player est " + player.Name);
         player.OnTakeDamage += player.UpadateHit;
         player.OnDeath += player.UpadateDeath;
@@ -36,7 +35,15 @@ class Program
         ennemy1.TakeDamage(50);
         Console.WriteLine("debut loop");
 
-        Items items = new Items();
+        Inventory items = new Inventory();
+        items.Objects = new Dictionary<Inventory, int>();
+        Potion potion1 = new Potion("heal");
+        items.AddList(potion1, 1);
+        Item clé = new Item("clé");
+        items.AddList(clé, 1);
+
+        Potion potion2 = new Potion("heal");
+        items.AddList(potion2, 1);
 
         ConsoleKeyInfo key;
         bool paused = false;
@@ -76,8 +83,8 @@ class Program
 
             Console.WriteLine("c'est en pause");
             Console.WriteLine("Que veux tu faire ?");
-            Console.WriteLine("1) Afficher l'équipe");
-            Console.WriteLine("2) Afficher l'inventaire");
+            Console.WriteLine("1)Afficher l'équipe");
+            Console.WriteLine("2)Afficher l'inventaire");
             Console.WriteLine("3)Sauvegarder (Beta)");
             Console.WriteLine("echap fin pause ou alt A quitter");
 
@@ -85,16 +92,15 @@ class Program
             do //pause
             {
                 key = Console.ReadKey(true);
-                
+                Console.Clear();
+
                 if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1) 
                 {
-                    Console.WriteLine("Equipe :");
                     equipe = true;
                     paused = false;
                 }
                 if (key.Key == ConsoleKey.D2 || key.Key == ConsoleKey.NumPad2)
                 {
-                    Console.WriteLine("inventaire :");
                     inventaire = true;
                     paused = false;
                 }
@@ -131,33 +137,35 @@ class Program
                     Console.WriteLine("Damage : " + player.Allies[0].Damage);
                     Console.WriteLine("Speed : " + player.Allies[0].Speed);
                     Console.WriteLine("Experience : " + player.Allies[0].Xp + " :\n");
-                    Console.WriteLine(" attaques :\n");
+                    Console.WriteLine("Attaques :\n");
                     for (int i = 0;i < player.Attacks.Count;i++) 
                     {
                         Console.WriteLine(player.Allies[0].Attacks[i].ToString());
                     }
-                    
                 }
             }
             if (inventaire) //inventaire
             {
-                Console.WriteLine("object de l'inventaire : ");
-                for (int i = 0; i < items.Objects.Count; i++)
+                Console.WriteLine("objets de l'inventaire : ");
+                if ( items.Objects == null)
                 {
-                    Console.Write(i + ")" + items.Objects[i].Name + " \n");
+                    Console.WriteLine("vous n'avez pas d'objet");
                 }
-                key = Console.ReadKey(true);
-                /*if (key.Key == ConsoleKey.D0 || key.Key == ConsoleKey.NumPad0)
+                else
                 {
-                    Console.Clear();
-                    Console.WriteLine(items.Objects[0].Name + " :\n");
-                    Console.WriteLine("Level : " + player.Allies[0].Level);
-                    Console.WriteLine("HP : " + player.Allies[0].Hp);
-                    Console.WriteLine("Damage : " + player.Allies[0].Damage);
-                    Console.WriteLine("Speed : " + player.Allies[0].Speed);
-                    Console.WriteLine("Experience : " + player.Allies[0].Xp + " :\n");
-                    Console.WriteLine(" attaques :\n");
-                }*/
+                    int i = 1;
+                    foreach (KeyValuePair<Inventory, int> kvp in items.Objects)
+                    {
+                        //Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+                        Console.Write(i + ")" + kvp.Key.Name +"  nombre : " + kvp.Value + " \n");
+                        i++;
+                    }
+                }
+            }
+            if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
+            {
+                Console.WriteLine("application quitté");
+                return 0;
             }
         }
     }
