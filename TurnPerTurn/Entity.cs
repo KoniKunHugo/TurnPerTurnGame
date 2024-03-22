@@ -21,7 +21,7 @@ public class Entity
     {
         if (Hp <= 0) //dead
         {
-            OnDeath?.Invoke(); //previent toutes les classes concernés
+            OnDeath?.Invoke(); //previent toutes les classes concernÃ©s
             Speed = 0;
             Damage = 0;
             Evade = 0;
@@ -34,6 +34,7 @@ public class Entity
 
     public void UpadateDeath()
     {
+        Console.WriteLine("dead");
         this.OnTakeDamage -= this.UpadateDeath;
         this.OnDeath -= this.UpadateDeath;
     }

@@ -12,7 +12,6 @@ public class Input
 
 
 
-
     public static void IsInput()
     {
         string image = @"C:\Users\lsaintomer\Documents\GitHub\TurnPerTurnGame\TurnPerTurn\map.bmp";
@@ -148,3 +147,4 @@ public class Input
     }
 
 }
+
