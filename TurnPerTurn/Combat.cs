@@ -27,7 +27,7 @@ class CombatPhase
     }
     public void Combat()
     {
-        while (true) { 
+        while (true) {
             if (player.Speed > foes.Speed)
             {
 

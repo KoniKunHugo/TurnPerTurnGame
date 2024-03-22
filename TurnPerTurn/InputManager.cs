@@ -1,9 +1,8 @@
 
-public static class Input
 using System.Dynamic;
 using System.Numerics;
 
-public class Input
+public static class Input
 {
     static int cury = 2;
     static int curx = 2;

@@ -2,24 +2,17 @@ using System.Security.Cryptography;
 
 class Player : Entity
 {
-    protected string name;
-    protected int xp;
-    public string Name { get => name; }
-    public int Xp { get => xp; set => xp = value; }
-    private int maxHp;
-    public int MaxHp { get => maxHp; set => maxHp = value; }
-    
-    public int Level { get => level; set => level = value; }
-
     public string SpellOne = "KneeBreaker";
     public string SpellTwo = "Uppercut";
     public string SpellThree = "Flurrie Blows";
     public string SpellFour = "Bulk Up";
 
+    private int maxHp;
+    private string name;
+    private int xp;
+
     private List<String> attacks;
-
     public List<String> Attacks { get => attacks; set => attacks = value; }
-
     private List<Player> allies;
     public List<Player> Allies { get => allies; set => allies = value; }
     
@@ -27,7 +20,7 @@ class Player : Entity
         Player(string _name)
     {
         name = _name;
-        Level = 1;
+        level = 1;
         xp = 75;
         Damage = 10;
         Speed = 10;
@@ -42,6 +35,7 @@ class Player : Entity
         attacks.Add(SpellThree);
         attacks.Add(SpellFour);
     }
+
     public static void drawplayer()
     {
         Console.SetCursorPosition(Input.Cury, Input.Curx);
@@ -70,16 +64,11 @@ class Player : Entity
         Console.WriteLine(Evade);
         return;
     }
-
-    public string SpellOne = "KneeBreaker";
-    public string SpellTwo = "Uppercut";
-    public string SpellThree = "Flurry Blows";
-    public string SpellFour = "Bulk Up";
     
 
     public int MaxHp { get => maxHp; set => maxHp = value; }
     public int XP { get => xp; set => xp = value; }
-    public int Level { get => level; set => level = value; }
+
     public string Name { get => name; set => name = value; }
 }
 
@@ -88,5 +77,3 @@ class Player : Entity
 (+'.'+)   (o.o)   (0.0)  (O_O )  ( '.' )  (*_*)   
 (*)_(*)   (><)    (><)   (w w )   (u u)   (w w)
  */
-    
-}

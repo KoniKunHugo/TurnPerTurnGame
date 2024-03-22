@@ -1,11 +1,11 @@
 public class Entity
 {
 
-    private int hp;
-    private int damage;
-    private int speed;
-    private int evade;
-    private int level;
+    protected int hp;
+    protected int damage;
+    protected int speed;
+    protected int evade;
+    protected int level;
 
     public int Hp { get => hp; set => hp = value; }
     public int Damage { get => damage; set => damage = value; }

@@ -23,14 +23,11 @@ class Program
 
         Player player = new Player(_name);
         Console.WriteLine("ton player est " + player.Name);
-        player.OnTakeDamage += player.UpadateHit;
-        player.OnDeath += player.UpadateDeath;
+        player.OnTakeDamage += player.UpdateHit;
+        player.OnDeath += player.UpdateDeath;
         player.TakeDamage(5);
 
-        Foes ennemy1 = new Foes(2);
-        ennemy1.OnTakeDamage += ennemy1.UpadateHit;
-        ennemy1.OnDeath += ennemy1.UpadateDeath;
-        ennemy1.TakeDamage(50);
+        
         Console.WriteLine("debut loop");
 
         Inventory items = new Inventory();
@@ -183,7 +180,7 @@ class Program
                         Console.WriteLine("HP : " + player.Allies[0].Hp);
                         Console.WriteLine("Damage : " + player.Allies[0].Damage);
                         Console.WriteLine("Speed : " + player.Allies[0].Speed);
-                        Console.WriteLine("Experience : " + player.Allies[0].Xp + " :\n");
+                        Console.WriteLine("Experience : " + player.Allies[0].XP + " :\n");
                         Console.WriteLine("Attaques :\n");
                         for (int i = 0; i < player.Attacks.Count; i++)
                         {
