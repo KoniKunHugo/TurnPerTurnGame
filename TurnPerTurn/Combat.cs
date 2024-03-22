@@ -109,33 +109,45 @@ class CombatPhase
     public void CheckAbility(string Temp)
     {
         string Ability = Temp;
-        if (Ability == player.SpellOne)
+        if (Ability == player.SpellOne) //KneeBreaker
         {
             if (foes.Style == 0)
             {
                 foes.Hp -= (15 * 2);
             }
+            else if (foes.Style == 1)
+            {
+                foes.Hp -= (15 / 2);
+            }
             else
             {
                 foes.Hp -= 15;
             }
         }
-        if (Ability == player.SpellTwo)
+        if (Ability == player.SpellTwo) //Uppercut
         {
             if (foes.Style == 2)
             {
                 foes.Hp -= (15 * 2);
             }
+            else if (foes.Style == 0)
+            {
+                foes.Hp -= (15 / 2);
+            }
             else
             {
                 foes.Hp -= 15;
             }
         }
-        if (Ability == player.SpellThree)
+        if (Ability == player.SpellThree) //Flurry Blows
         {
             if (foes.Style == 1)
             {
                 foes.Hp -= (15 * 2);
+            }
+            else if (foes.Style == 2)
+            {
+                foes.Hp -= (15 / 2);
             }
             else
             {

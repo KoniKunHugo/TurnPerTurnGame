@@ -102,6 +102,8 @@
                 {
                     Console.Clear();
                     Console.WriteLine("fight");
+                    CombatPhase combatPhase = new CombatPhase();
+                    CombatPhase combatPhase = new CombatPhase();
                     combatPhase.EnterWildCombatPhase();
                 }
             }
