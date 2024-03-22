@@ -49,123 +49,206 @@ class Program
         bool paused = false;
         bool equipe = false;
         bool inventaire = false;
+        bool fight = false;
+        bool map = true;
+        bool once = true;
         while (true)
         { 
-            do //map
+            while(paused == false)
             {
-                key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.Z)
+                while(map && (paused == false))
                 {
+                    Console.Clear();
+                    Console.WriteLine("map");
+                    key = Console.ReadKey(true);
+                    if (key.Key == ConsoleKey.Z)
+                    {
 
+                    }
+                    if (key.Key == ConsoleKey.S)
+                    {
+
+                    }
+                    if (key.Key == ConsoleKey.Q)
+                    {
+
+                    }
+                    if (key.Key == ConsoleKey.D)
+                    {
+
+                    }
+                    if (key.Key == ConsoleKey.Escape) //pause
+                    {
+                        paused = true;
+                    }
+                    if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
+                    {
+                        Console.WriteLine("application quitté");
+                        return 0;
+                    }
+                    if (key.Key == ConsoleKey.Enter) //fight switch
+                    {
+                        fight = true;
+                        map = false;
+                    }
                 }
-                if (key.Key == ConsoleKey.S)
+                while (fight && (paused == false))
                 {
+                    Console.Clear();
+                    Console.WriteLine("fight");
+                    key = Console.ReadKey(true);
 
+                    if (key.Key == ConsoleKey.Escape) //pause
+                    {
+                        paused = true;
+                    }
+                    if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
+                    {
+                        Console.WriteLine("application quitté");
+                        return 0;
+                    }
+                    if (key.Key == ConsoleKey.Enter) //fight switch
+                    {
+                        fight = false;
+                        map = true;
+                    }
                 }
-                if (key.Key == ConsoleKey.Q)
-                {
+            }
 
-                }
-                if (key.Key == ConsoleKey.D)
-                {
-
-                }
-                if (key.Key == ConsoleKey.Escape) //pause
-                {
-                    paused = true;
-                }
-                if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
-                {
-                    Console.WriteLine("application quitté");
-                    return 0;
-                }
-            } while (paused == false);
-
-            Console.WriteLine("c'est en pause");
-            Console.WriteLine("Que veux tu faire ?");
-            Console.WriteLine("1)Afficher l'équipe");
-            Console.WriteLine("2)Afficher l'inventaire");
-            Console.WriteLine("3)Sauvegarder (Beta)");
-            Console.WriteLine("echap fin pause ou alt A quitter");
-
-
-            do //pause
+            while(paused)
             {
+                do
+                {
+                    once = false;
+                    Console.Clear();
+                    Console.WriteLine("c'est en pause");
+                    Console.WriteLine("Que veux tu faire ?");
+                    Console.WriteLine("1)Afficher l'équipe");
+                    Console.WriteLine("2)Afficher l'inventaire");
+                    Console.WriteLine("3)Sauvegarder (Beta)");
+                    Console.WriteLine("echap fin pause ou alt A quitter");
+                } while (once);
+                
                 key = Console.ReadKey(true);
-                Console.Clear();
 
-                if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1) 
+                if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1) // 1 pour voir l'equipe
                 {
                     equipe = true;
                     paused = false;
+                    once = true;
                 }
-                if (key.Key == ConsoleKey.D2 || key.Key == ConsoleKey.NumPad2)
+                if (key.Key == ConsoleKey.D2 || key.Key == ConsoleKey.NumPad2) // 2 pour voir l'inventaire
                 {
                     inventaire = true;
                     paused = false;
+                    once = true;
                 }
-                if (key.Key == ConsoleKey.D3 || key.Key == ConsoleKey.NumPad3)
+                if (key.Key == ConsoleKey.D3 || key.Key == ConsoleKey.NumPad3) // 3 pour save
                 {
                     Console.WriteLine("save :");
                 }
-                if (key.Key == ConsoleKey.Escape)
+                if (key.Key == ConsoleKey.Escape) //escape pour quitter la pause
                 {
                     paused = false;
+                    once = true;
+                    Console.WriteLine("fin pause");
                 }
                 if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
                 {
                     Console.WriteLine("application quitté");
                     return 0;
                 }
-            } while (paused == true);
-            Console.WriteLine("fin pause");
 
-            if (equipe) //equipe
-            {
-                Console.WriteLine("membre de l'équipe : ");
-                for (int i = 0; i < player.Allies.Count; i++)
+                while (equipe) //equipe
                 {
-                    Console.Write(i + ")" +player.Allies[i].Name + " \n");
-                }
-                key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.D0 || key.Key == ConsoleKey.NumPad0)
-                {
-                    Console.Clear();
-                    Console.WriteLine(player.Allies[0].Name + " :\n");
-                    Console.WriteLine("Level : " +player.Allies[0].Level );
-                    Console.WriteLine("HP : " + player.Allies[0].Hp );
-                    Console.WriteLine("Damage : " + player.Allies[0].Damage);
-                    Console.WriteLine("Speed : " + player.Allies[0].Speed);
-                    Console.WriteLine("Experience : " + player.Allies[0].Xp + " :\n");
-                    Console.WriteLine("Attaques :\n");
-                    for (int i = 0;i < player.Attacks.Count;i++) 
+                    while(once)
                     {
-                        Console.WriteLine(player.Allies[0].Attacks[i].ToString());
+                        once = false;
+                        Console.Clear();
+                        Console.WriteLine("membre de l'équipe (backspace pour revenir au menu) :");
+                        for (int i = 0; i < player.Allies.Count; i++)
+                        {
+                            Console.Write(i + ")" + player.Allies[i].Name + " \n");
+                        }
+                    }
+                    
+                    key = Console.ReadKey(true);
+                    if (key.Key == ConsoleKey.D0 || key.Key == ConsoleKey.NumPad0)
+                    {
+                        Console.Clear();
+                        Console.WriteLine(player.Allies[0].Name + " :\n");
+                        Console.WriteLine("Level : " + player.Allies[0].Level);
+                        Console.WriteLine("HP : " + player.Allies[0].Hp);
+                        Console.WriteLine("Damage : " + player.Allies[0].Damage);
+                        Console.WriteLine("Speed : " + player.Allies[0].Speed);
+                        Console.WriteLine("Experience : " + player.Allies[0].Xp + " :\n");
+                        Console.WriteLine("Attaques :\n");
+                        for (int i = 0; i < player.Attacks.Count; i++)
+                        {
+                            Console.WriteLine(player.Allies[0].Attacks[i].ToString());
+                        }
+                    }
+                    if (key.Key == ConsoleKey.Escape) //escape pour quitter la pause
+                    {
+                        paused = false;
+                        equipe = false;
+                        once = true;
+                        Console.WriteLine("fin pause");
+                    }
+                    if (key.Key == ConsoleKey.Backspace) //escape pour quitter l'equipe et revenir au menu
+                    {
+                        equipe = false;
+                        paused = true;
+                        once = true;
+                        Console.WriteLine("fin equipe");
+                    }
+                    if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
+                    {
+                        Console.WriteLine("application quitté");
+                        return 0;
                     }
                 }
-            }
-            if (inventaire) //inventaire
-            {
-                Console.WriteLine("objets de l'inventaire : ");
-                if ( items.Objects == null)
+                while (inventaire) //inventaire
                 {
-                    Console.WriteLine("vous n'avez pas d'objet");
-                }
-                else
-                {
-                    int i = 1;
-                    foreach (KeyValuePair<Inventory, int> kvp in items.Objects)
+                    while(once)
                     {
-                        //Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
-                        Console.Write(i + ")" + kvp.Key.Name +"  nombre : " + kvp.Value + " \n");
-                        i++;
+                        once = false;
+                        Console.Clear();
+                        Console.WriteLine("objets de l'inventaire (backspace pour revenir au menu) :");
+                        if (items.Objects == null)
+                        {
+                            Console.WriteLine("vous n'avez pas d'objet");
+                        }
+                        else
+                        {
+                            int i = 1;
+                            foreach (KeyValuePair<Inventory, int> kvp in items.Objects)
+                            {
+                                //Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+                                Console.Write(i + ")" + kvp.Key.Name + "  nombre : " + kvp.Value + " \n");
+                                i++;
+                            }
+                        }
+                    }
+                    key = Console.ReadKey(true);
+                    if (key.Key == ConsoleKey.Escape) //escape pour quitter la pause
+                    {
+                        paused = false;
+                        inventaire = false;
+                        Console.WriteLine("fin pause");
+                    }
+                    if (key.Key == ConsoleKey.Backspace) //escape pour quitter l'inventaire et revenir au menu
+                    {
+                        inventaire = false;
+                        paused = true;
+                        Console.WriteLine("fin inventaire");
+                    }
+                    if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
+                    {
+                        Console.WriteLine("application quitté");
+                        return 0;
                     }
                 }
-            }
-            if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
-            {
-                Console.WriteLine("application quitté");
-                return 0;
             }
         }
     }

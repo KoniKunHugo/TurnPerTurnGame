@@ -37,7 +37,6 @@ public class Inventory
         {
             Console.WriteLine("error: list null");
         }
-        
     }
 
     public virtual void Use()
