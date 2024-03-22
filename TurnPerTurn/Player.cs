@@ -23,12 +23,13 @@ class Player : Entity
     public static void drawplayer()
     {
         Console.SetCursorPosition(Input.Cury, Input.Curx);
-        Console.Write("(\\__/)");
+        Console.Write("P");
+        /*Console.SetCursorPosition(Input.Cury, Input.Curx);
+        Console.Write("(\\__/) ");
         Console.SetCursorPosition(Input.Cury, Input.Curx + 1);
         Console.Write("(+'.'+)");
         Console.SetCursorPosition(Input.Cury, Input.Curx + 2);
-        Console.Write("(*)_(*)");
-
+        Console.Write("(*)_(*)");*/
     }
 }
 /*

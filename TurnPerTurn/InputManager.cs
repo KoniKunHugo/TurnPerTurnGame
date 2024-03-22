@@ -1,5 +1,6 @@
 using System.Dynamic;
 using System.Numerics;
+using System.Drawing;
 
 public class Input
 {
@@ -14,7 +15,11 @@ public class Input
 
     public static void IsInput()
     {
+        string image = @"C:\Users\lsaintomer\Documents\GitHub\TurnPerTurnGame\TurnPerTurn\map.bmp";
+        Bitmap map = new Bitmap(image);
         ConsoleKeyInfo key;
+        Color red = map.GetPixel(0,0);
+        Color white = map.GetPixel(0,16);
         do
         {
             key = Console.ReadKey();
@@ -34,14 +39,18 @@ public class Input
                     Console.SetCursorPosition(cury, curx + 2);
                     Console.Write("       ");*/
                     Console.SetCursorPosition(cury, curx);
-                    for (int i = curx - 1; i <= curx + 3; i++)
+                    
+                    if (map.GetPixel(cury, curx) == red)
                     {
-                        for (int j = cury - 1; j <= cury + 7; j++)
-                        {
-                            Console.Write(Map._map[i, j]);
-                            Console.SetCursorPosition(j + 1, i);
-                        }
+                        Console.Write("\x1b[48;5;9m");
+                        Console.Write(" ");
                     }
+                    else
+                    {
+                        Console.Write("\x1b[48;5;15m");
+                        Console.Write(" ");
+                    }
+                    
                     curx = curx - 1;
                     Player.drawplayer();
                 }
@@ -49,7 +58,7 @@ public class Input
             }
             if (key.Key == ConsoleKey.DownArrow)
             {
-                if (curx < 27)
+                if (curx < 57)
                 {
                     /*Console.SetCursorPosition(cury, curx);
                     Console.Write("      ");
@@ -58,14 +67,18 @@ public class Input
                     Console.SetCursorPosition(cury, curx + 2);
                     Console.Write("       ");*/
                     Console.SetCursorPosition(cury, curx);
-                    for (int i = curx - 1; i <= curx + 3; i++)
+
+                    if (map.GetPixel(cury, curx) == red)
                     {
-                        for (int j = cury - 1; j <= cury + 8; j++)
-                        {
-                            Console.Write(Map._map[i, j]);
-                            Console.SetCursorPosition(j + 1, i);
-                        }
+                        Console.Write("\x1b[48;5;9m");
+                        Console.Write(" ");
                     }
+                    else
+                    {
+                        Console.Write("\x1b[48;5;15m");
+                        Console.Write(" ");
+                    }
+
                     curx = curx + 1;
                     Player.drawplayer();
                 }
@@ -84,13 +97,16 @@ public class Input
                     Console.SetCursorPosition(cury, curx + 2);
                     Console.Write("       ");*/
                     Console.SetCursorPosition(cury, curx);
-                    for (int i = curx; i <= curx + 3; i++)
+
+                    if (map.GetPixel(cury, curx) == red)
                     {
-                        for (int j = cury + 1; j <= cury + 6; j++)
-                        {
-                            Console.Write(Map._map[i, j]);
-                            Console.SetCursorPosition(j, i);
-                        }
+                        Console.Write("\x1b[48;5;9m");
+                        Console.Write(" ");
+                    }
+                    else
+                    {
+                        Console.Write("\x1b[48;5;15m");
+                        Console.Write(" ");
                     }
                     cury = cury - 1;
                     Player.drawplayer();
@@ -99,7 +115,7 @@ public class Input
             }
             if (key.Key == ConsoleKey.RightArrow)
             {
-                if (cury < 113)
+                if (cury < 233)
                 {
                     /*Console.SetCursorPosition(cury, curx);
                     Console.Write(" P");
@@ -111,13 +127,16 @@ public class Input
                     Console.SetCursorPosition(cury, curx + 2);
                     Console.Write("       ");*/
                     Console.SetCursorPosition(cury, curx);
-                    for (int i = curx; i <= curx + 3; i++)
+
+                    if (map.GetPixel(cury, curx) == red)
                     {
-                        for (int j = cury - 1; j <= cury + 5; j++)
-                        {
-                            Console.Write(Map._map[i, j]);
-                            Console.SetCursorPosition(j + 1, i);
-                        }
+                        Console.Write("\x1b[48;5;9m");
+                        Console.Write(" ");
+                    }
+                    else
+                    {
+                        Console.Write("\x1b[48;5;15m");
+                        Console.Write(" ");
                     }
                     cury = cury + 1;
                     Player.drawplayer();
