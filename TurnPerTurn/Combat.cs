@@ -128,7 +128,7 @@ class CombatPhase
                 }
 
     
-    private Player player = new Player();
+    private Player player = new Player("Cringe");
     private Foes foes = new Foes();
     private List<string> CombatSceneList = new List<string>();
 }

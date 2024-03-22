@@ -24,7 +24,7 @@ public class Entity
             OnDeath?.Invoke(); //previent toutes les classes concernés
             Speed = 0;
             Damage = 0;
-            Evade = 0
+            Evade = 0;
         }
     }
     public void UpadateHit()
