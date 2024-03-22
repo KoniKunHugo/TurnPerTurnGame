@@ -1,10 +1,17 @@
 public class Entity
 {
-    public int Hp;
-    public int Damage;
-    public int Speed;
-    public int Evade;
-    public int level;
+
+    private int hp;
+    private int damage;
+    private int speed;
+    private int evade;
+    private int level;
+
+    public int Hp { get => hp; set => hp = value; }
+    public int Damage { get => damage; set => damage = value; }
+    public int Speed { get => speed; set => speed = value; }
+    public int Evade { get => evade; set => evade = value; }
+    public int Level { get => level; set => level = value; }
 
     public event Action OnTakeDamage;
     public event Action OnDeath;
@@ -19,8 +26,9 @@ public class Entity
 
     public void IsDead()
     {
-        if (Hp <= 0) //dead
+        if (hp <= 0) //dead
         {
+
             OnDeath?.Invoke(); //previent toutes les classes concernés
             Speed = 0;
             Damage = 0;
@@ -37,5 +45,6 @@ public class Entity
         Console.WriteLine("dead");
         this.OnTakeDamage -= this.UpdateDeath;
         this.OnDeath -= this.UpdateDeath;
+
     }
 }

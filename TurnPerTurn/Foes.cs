@@ -1,5 +1,9 @@
+using System.Reflection.Emit;
+using System.Xml.Linq;
+
 public class Foes : Entity
 {
+
     private Random rand = new Random();
     private int style;
 
@@ -7,24 +11,25 @@ public class Foes : Entity
     {
         Style = style;
 
-        Hp = 50;
+        Level = 1;
+        Hp = 30;
         if (Style == 0) //Vitesse 
         {
-            Style = 0;
             Speed = 20;
-            Evade = 5;
+            Evade = 10;
+            Damage = 5;
         }
         else if (Style == 1) //Puissance
         {
-            Style = 1;
-            Speed = 5;
-            Evade = 20;
+            Speed = 7;
+            Evade = 15;
+            Damage = 15;
         }
         else if (Style == 2) //Fourberie
         {
-            Style = 2;
             Speed = 10;
             Evade = 10;
+            Damage = 7;
         }
         return;
     }

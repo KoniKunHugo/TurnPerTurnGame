@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 public static class EventManager
 {
-    public static event Action OnTakeDamage;
-    public static event Action OnDeath;
+    public static event Action OnTakeDamage1;
+    public static event Action OnDeath1;
+
 
 
     public static void UpadateHit1()

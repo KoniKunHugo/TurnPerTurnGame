@@ -1,3 +1,5 @@
+
+public static class Input
 using System.Dynamic;
 using System.Numerics;
 
@@ -14,9 +16,11 @@ public class Input
     public static void IsInput()
     {
         ConsoleKeyInfo key;
+        bool paused = false;
         do
         {
             key = Console.ReadKey();
+
             if (key.Key == ConsoleKey.UpArrow)
             {
                 if (curx > 1)
@@ -128,4 +132,3 @@ public class Input
     }
 
 }
-
