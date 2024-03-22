@@ -1,26 +1,47 @@
-using static System.Net.Mime.MediaTypeNames;
-using System.Reflection.Emit;
-using System.Xml;
+using System.Security.Cryptography;
 
 class Player : Entity
 {
-    public Player(string _name)
-        {
-        string name = _name;
-        level = 1;
+    protected string name;
+    protected int xp;
+    public string Name { get => name; }
+    public int Xp { get => xp; set => xp = value; }
+    private int maxHp;
+    public int MaxHp { get => maxHp; set => maxHp = value; }
+    
+    public int Level { get => level; set => level = value; }
+
+    public string SpellOne = "KneeBreaker";
+    public string SpellTwo = "Uppercut";
+    public string SpellThree = "Flurrie Blows";
+    public string SpellFour = "Bulk Up";
+
+    private List<String> attacks;
+
+    public List<String> Attacks { get => attacks; set => attacks = value; }
+
+    private List<Player> allies;
+    public List<Player> Allies { get => allies; set => allies = value; }
+    
+    public
+        Player(string _name)
+    {
+        name = _name;
+        Level = 1;
         xp = 75;
         Damage = 10;
         Speed = 10;
         Evade = 5;
         Hp = 20;
-        int maxHp = Hp;
-        }
-    private int maxHp;
-
-
-    protected string name;
-    protected int xp;
-
+        maxHp = Hp;
+        allies = new List<Player> { };
+        allies.Add(this);
+        attacks = new List<string> { };
+        attacks.Add(SpellOne);
+        attacks.Add(SpellTwo);
+        attacks.Add(SpellThree);
+        attacks.Add(SpellFour);
+    }
     public static void drawplayer()
     {
         Console.SetCursorPosition(Input.Cury, Input.Curx);
@@ -31,7 +52,6 @@ class Player : Entity
         Console.Write("(*)_(*)");
 
     }
-
     public void LevelUp()
     {
         if (xp >= 100)
@@ -68,8 +88,5 @@ class Player : Entity
 (+'.'+)   (o.o)   (0.0)  (O_O )  ( '.' )  (*_*)   
 (*)_(*)   (><)    (><)   (w w )   (u u)   (w w)
  */
-
-
-
     
-
+}

@@ -1,29 +1,42 @@
+using System.Reflection.Emit;
+using System.Xml.Linq;
+
 public class Foes : Entity
 {
+
     private Random rand = new Random();
     int Type;
 
-    public void Entity(int type)
+    public Foes(int type)
     {
         Type = type;
+        Level = 1;
+        Hp = 20;
+        this.SeTByType();
+    }
 
-        Hp = 50;
+    public void SeTByType()
+    {
         if (Type == 0) //Vitesse 
         {
             Speed = 20;
-            Evade = 5;
+            Evade = 10;
+            Damage = 5;
         }
-        else if ( Type == 1) //Puissance
+        else if (Type == 1) //Puissance
         {
-            Speed = 5;
-            Evade = 20;
+            Speed = 7;
+            Evade = 15;
+            Damage = 15;
         }
         else if (Type == 2) //Fourberie
         {
-            
             Speed = 10;
             Evade = 10;
+            Damage = 7;
         }
+
+        Console.WriteLine("entity set");
         return;
     }
 
