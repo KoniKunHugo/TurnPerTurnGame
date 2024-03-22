@@ -27,10 +27,10 @@ class CombatPhase
     }
     public void Combat()
     {
-        while (true) {
+        while (Program.Fight)
+        {
             if (player.Speed > foes.Speed)
             {
-
                 //PLAYER ACT FIRST
                 Console.WriteLine("Show them Your Moves");
                 Console.WriteLine("-" + player.SpellOne);
@@ -38,12 +38,25 @@ class CombatPhase
                 Console.WriteLine("-" + player.SpellThree);
                 Console.WriteLine("-" + player.SpellFour);
                 string Temp = Console.ReadLine();
+                ConsoleKeyInfo key = Console.ReadKey(true);
+
                 if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
                 {
                     Console.WriteLine("Attaque");
                     CheckAbility(Temp);
                     Console.WriteLine(foes.Hp + "Mob");
                     Console.WriteLine(player.Hp + "Player");
+                }
+                
+                if (key.Key == ConsoleKey.Escape) //pause
+                {
+                    Program.Paused = true;
+                    break;
+                }
+                if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
+                {
+                    Console.WriteLine("application quitté");
+                    return;
                 }
 
                 if (foes.Hp <= 0 || player.Hp <= 0)
@@ -136,21 +149,24 @@ class CombatPhase
     }
 
     public void ExitCombatPhase()
-                {
-                    OnCombatEnd?.Invoke();
-                    if (player.Hp == 0)
-                    {
-                        //Kill
-                    }
-                    else
-                    {
-                        player.XP += 50;
-                        player.LevelUp();
-                    }
-                }
+    {
+        OnCombatEnd?.Invoke();
+        if (player.Hp == 0)
+        {
+            //Kill
+        }
+        else if (foes.Hp == 0)
+        {
+            player.XP += 50;
+            player.LevelUp();
+        }
+        Console.WriteLine("end fight");
+    }
 
     public void UpdateExitCombat()
         {
+        Program.Fight = false;
+        Program._Map = true; 
         ExitCombatPhase();
         Console.WriteLine("Here");
         OnCombatEnd -= UpdateExitCombat;

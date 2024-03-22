@@ -1,5 +1,23 @@
-class Program
+ class Program
 {
+
+    private static ConsoleKeyInfo key;
+    public ConsoleKeyInfo Key { get => key; set => key = value; }
+
+
+    private static bool paused = false;
+    public static bool Paused { get => paused; set => paused = value; }
+
+    private static bool equipe = false;
+    private static bool inventaire = false;
+
+    private static bool fight = false;
+    public static bool Fight { get => fight; set => fight = value; }
+
+    private static bool map = true;
+    public static bool _Map { get => map; set => map = value; }
+    private static bool once = true;
+
     static int Main(string[] args)
     {
         Console.WriteLine("Choisis le nom de ton joueur");
@@ -21,14 +39,13 @@ class Program
         
         } while (isName == false);
 
+        CombatPhase combatPhase = new CombatPhase();
         Player player = new Player(_name);
         Console.WriteLine("ton player est " + player.Name);
         player.OnTakeDamage += player.UpdateHit;
         player.OnDeath += player.UpdateDeath;
         player.TakeDamage(5);
 
-        
-        Console.WriteLine("debut loop");
 
         Inventory items = new Inventory();
         items.Objects = new Dictionary<Inventory, int>();
@@ -39,14 +56,8 @@ class Program
 
         Potion potion2 = new Potion("heal");
         items.AddList(potion2, 1);
-
-        ConsoleKeyInfo key;
-        bool paused = false;
-        bool equipe = false;
-        bool inventaire = false;
-        bool fight = false;
-        bool map = true;
-        bool once = true;
+ 
+        Console.WriteLine("debut loop");
         while (true)
         { 
             while(paused == false)
@@ -91,26 +102,7 @@ class Program
                 {
                     Console.Clear();
                     Console.WriteLine("fight");
-                  
-                    CombatPhase combatPhase = new CombatPhase();
                     combatPhase.EnterWildCombatPhase();
-                  
-                    key = Console.ReadKey(true);
-
-                    if (key.Key == ConsoleKey.Escape) //pause
-                    {
-                        paused = true;
-                    }
-                    if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
-                    {
-                        Console.WriteLine("application quitté");
-                        return 0;
-                    }
-                    if (key.Key == ConsoleKey.Enter) //fight switch
-                    {
-                        fight = false;
-                        map = true;
-                    }
                 }
             }
 
