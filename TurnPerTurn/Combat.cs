@@ -98,36 +98,36 @@ class CombatPhase
         string Ability = Temp;
         if (Ability == player.SpellOne)
         {
-            //if (foes.Type == 0) 
-            //{
-            //    foes.Hp -= (30*1.5) ; 
-            //}
-            //else
-            //{
-            foes.Hp -= 30;
-            //}
+            if (foes.Style == 0)
+            {
+                foes.Hp -= (15 * 2);
+            }
+            else
+            {
+                foes.Hp -= 15;
+            }
         }
         if (Ability == player.SpellTwo)
         {
-            //if (foes.Type == 2) 
-            //{
-            //    foes.Hp -= (30*1.5) ; 
-            //}
-            //else
-            //{
-            foes.Hp -= 30;
-            //}
+            if (foes.Style == 2)
+            {
+                foes.Hp -= (15 * 2);
+            }
+            else
+            {
+                foes.Hp -= 15;
+            }
         }
         if (Ability == player.SpellThree)
         {
-            //if (foes.Type == 1) 
-            //{
-            //    foes.Hp -= (30*1.5) ; 
-            //}
-            //else
-            //{
-                foes.Hp -= 30;
-            //}
+            if (foes.Style == 1)
+            {
+                foes.Hp -= (15 * 2);
+            }
+            else
+            {
+                foes.Hp -= 15;
+            }
         }
         if (Ability == player.SpellFour)
         {
