@@ -3,7 +3,9 @@ using System.Xml.Linq;
 
 public class Foes : Entity
 {
-    private int Type;
+
+    private Random rand = new Random();
+    int Type;
 
     public Foes(int type)
     {
@@ -33,6 +35,15 @@ public class Foes : Entity
             Evade = 10;
             Damage = 7;
         }
+
         Console.WriteLine("entity set");
+        return;
+    }
+
+    public void randomFoe()
+    {
+        int Temp;
+        Temp = rand.Next(3);
+        Entity(Temp);
     }
 }

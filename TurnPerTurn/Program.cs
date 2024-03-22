@@ -1,5 +1,3 @@
-﻿// See https://aka.ms/new-console-template for more information
-
 class Program
 {
     static int Main(string[] args)
@@ -96,6 +94,10 @@ class Program
                 {
                     Console.Clear();
                     Console.WriteLine("fight");
+                  
+                    CombatPhase combatPhase = new CombatPhase();
+                    combatPhase.EnterWildCombatPhase();
+                  
                     key = Console.ReadKey(true);
 
                     if (key.Key == ConsoleKey.Escape) //pause
@@ -253,4 +255,3 @@ class Program
         }
     }
 }
-

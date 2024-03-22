@@ -1,12 +1,11 @@
 public class Entity
 {
+
     private int hp;
     private int damage;
     private int speed;
     private int evade;
     private int level;
-
-    
 
     public int Hp { get => hp; set => hp = value; }
     public int Damage { get => damage; set => damage = value; }
@@ -21,7 +20,7 @@ public class Entity
     public void TakeDamage(int amount)
     {
         Hp -= amount;
-        OnTakeDamage.Invoke();
+        OnTakeDamage?.Invoke();
         IsDead();
     }
 
@@ -29,20 +28,23 @@ public class Entity
     {
         if (hp <= 0) //dead
         {
-            OnDeath?.Invoke(); //previent toutes les classes concernés
-            speed = 0;
-            damage = 0;
-            evade = 0;
-        } 
+
+            OnDeath?.Invoke(); //previent toutes les classes concernÃ©s
+            Speed = 0;
+            Damage = 0;
+            Evade = 0;
+        }
     }
-    public void UpadateHit()
+    public void UpdateHit()
     {
         Console.WriteLine("oui");
     }
 
-    public void UpadateDeath()
+    public void UpdateDeath()
     {
-        this.OnTakeDamage -= this.UpadateDeath;
-        this.OnDeath -= this.UpadateDeath;
+        Console.WriteLine("dead");
+        this.OnTakeDamage -= this.UpdateDeath;
+        this.OnDeath -= this.UpdateDeath;
+
     }
 }
