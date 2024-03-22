@@ -4,56 +4,91 @@ using System.Security.Cryptography.X509Certificates;
 
 class CombatPhase
 {
-    public event Action OnTriggerCombat;
     public event Action OnCombatEnd;
 
-    public void EnterCombatPhase()
+
+    public void EnterPredeterminedCombatPhase()
     {
-        OnTriggerCombat?.Invoke();
-        Console.WriteLine();
+        //We'll choose manually
+        DrawCombatPhase();
+        Combat();
     }
 
+    public void EnterWildCombatPhase()
+    {
+        foes.randomFoe();
+        DrawCombatPhase();
+        Combat();
+    }
+
+    public void DrawCombatPhase() 
+    {
+        Console.WriteLine("------------------");
+    }
     public void Combat()
     {
-        if (player.Speed > foes.Speed)
-        {
+        while (true) { 
+            if (player.Speed > foes.Speed)
+            {
 
-            //PLAYER ACT FIRST
-            Console.WriteLine("Show them Your Moves");
-            Console.WriteLine("-" + player.SpellOne);
-            Console.WriteLine("-" + player.SpellTwo);
-            Console.WriteLine("-" + player.SpellThree);
-            Console.WriteLine("-" + player.SpellFour);
-            string Temp = Console.ReadLine();
-            if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
-            {
-                CheckAbility(Temp);
-            }
+                //PLAYER ACT FIRST
+                Console.WriteLine("Show them Your Moves");
+                Console.WriteLine("-" + player.SpellOne);
+                Console.WriteLine("-" + player.SpellTwo);
+                Console.WriteLine("-" + player.SpellThree);
+                Console.WriteLine("-" + player.SpellFour);
+                string Temp = Console.ReadLine();
+                if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
+                {
+                    Console.WriteLine("Attaque");
+                    CheckAbility(Temp);
+                    Console.WriteLine(foes.Hp + "Mob");
+                    Console.WriteLine(player.Hp + "Player");
+                }
 
-            if (foes.Hp == 0 || player.Hp == 0)
-            {
-                UpdateExitCombat();
+                if (foes.Hp <= 0 || player.Hp <= 0)
+                {
+                    UpdateExitCombat();
+                    break;
+                }
+                //FOE ACT SECOND
+                
+                if (foes.Hp <= 0 || player.Hp <= 0)
+                {
+                    UpdateExitCombat();
+                    break;
+                }
             }
-            //FOE ACT SECOND
-            
-            if (foes.Hp == 0 || player.Hp == 0)
+            else
             {
-                UpdateExitCombat();
-            }
-        }
-        else
-        {
-            //FOE ACT FIRST
-            player.TakeDamage(50);
-            if (foes.Hp == 0 || player.Hp == 0)
-            {
-                UpdateExitCombat();
-            }
-            //PLAYER ACT SECOND
+                //FOE ACT FIRST
+                player.TakeDamage(1);
+                if (foes.Hp <= 0 || player.Hp <= 0)
+                {
+                    UpdateExitCombat();
+                    break;
 
-            if (foes.Hp == 0 || player.Hp == 0)
-            {
-                UpdateExitCombat();
+                }
+                Console.WriteLine(player.Hp + "Player");
+                //PLAYER ACT SECOND
+                Console.WriteLine("Show them Your Moves");
+                Console.WriteLine("-" + player.SpellOne);
+                Console.WriteLine("-" + player.SpellTwo);
+                Console.WriteLine("-" + player.SpellThree);
+                Console.WriteLine("-" + player.SpellFour);
+                string Temp = Console.ReadLine();
+                if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
+                {
+                    Console.WriteLine("Attaque");
+                    CheckAbility(Temp);
+                    Console.WriteLine(foes.Hp + "Mob");
+                    Console.WriteLine(player.Hp + "Player");
+                }
+                if (foes.Hp <= 0 || player.Hp <= 0)
+                {
+                    UpdateExitCombat();
+                    break;
+                }
             }
         }
     }
@@ -115,20 +150,14 @@ class CombatPhase
                 }
 
     public void UpdateExitCombat()
-                {
-                    OnCombatEnd += UpdateExitCombat;
-                    OnCombatEnd -= UpdateExitCombat;
-                }
-        
-
-    public void UpdateEnterCombat() 
-                {
-                    OnTriggerCombat += UpdateEnterCombat;
-                    OnTriggerCombat -= UpdateEnterCombat;
-                }
+        {
+        ExitCombatPhase();
+        Console.WriteLine("Here");
+        OnCombatEnd -= UpdateExitCombat;
+        }
 
     
-    private Player player = new Player("Cringe");
+    private Player player = new Player("CLOUD !!!");
     private Foes foes = new Foes();
     private List<string> CombatSceneList = new List<string>();
 }

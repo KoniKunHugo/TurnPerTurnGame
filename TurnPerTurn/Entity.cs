@@ -13,7 +13,7 @@ public class Entity
     public void TakeDamage(int amount)
     {
         Hp -= amount;
-        OnTakeDamage.Invoke();
+        OnTakeDamage?.Invoke();
         IsDead();
     }
 
@@ -27,15 +27,15 @@ public class Entity
             Evade = 0;
         }
     }
-    public void UpadateHit()
+    public void UpdateHit()
     {
         Console.WriteLine("oui");
     }
 
-    public void UpadateDeath()
+    public void UpdateDeath()
     {
         Console.WriteLine("dead");
-        this.OnTakeDamage -= this.UpadateDeath;
-        this.OnDeath -= this.UpadateDeath;
+        this.OnTakeDamage -= this.UpdateDeath;
+        this.OnDeath -= this.UpdateDeath;
     }
 }

@@ -8,7 +8,7 @@ class Player : Entity
         {
         string name = _name;
         level = 1;
-        int xp = 0;
+        xp = 75;
         Damage = 10;
         Speed = 10;
         Evade = 5;
@@ -34,21 +34,26 @@ class Player : Entity
 
     public void LevelUp()
     {
-        if (XP == 100)
+        if (xp >= 100)
         {
             MaxHp += 10;
             Level += 1;
             Damage = Damage + 5;
             Speed = Speed + 5;
             Evade = Evade + 2;
-            XP -= 100;
+            xp -= 100;
         }
+        Console.WriteLine(Level);
+        Console.WriteLine(MaxHp);
+        Console.WriteLine(Damage);
+        Console.WriteLine(Speed);
+        Console.WriteLine(Evade);
         return;
     }
 
     public string SpellOne = "KneeBreaker";
     public string SpellTwo = "Uppercut";
-    public string SpellThree = "Flurrie Blows";
+    public string SpellThree = "Flurry Blows";
     public string SpellFour = "Bulk Up";
     
 

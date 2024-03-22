@@ -1,5 +1,6 @@
 public class Foes : Entity
 {
+    private Random rand = new Random();
     int Type;
 
     public void Entity(int type)
@@ -23,5 +24,13 @@ public class Foes : Entity
             Speed = 10;
             Evade = 10;
         }
+        return;
+    }
+
+    public void randomFoe()
+    {
+        int Temp;
+        Temp = rand.Next(3);
+        Entity(Temp);
     }
 }

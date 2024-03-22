@@ -5,8 +5,14 @@ class Program
 
     public static void Main(string[] args)
     {
-        Console.WriteLine("Oy");
+        CombatPhase combatPhase = new CombatPhase();
+        combatPhase.EnterWildCombatPhase();
+        //while (true)
+        //{
+        //    combatPhase.Combat();
+        //}
         
+       
     }
 
 }
