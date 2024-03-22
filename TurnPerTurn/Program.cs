@@ -21,6 +21,7 @@ class Program
         
         } while (isName == false);
 
+        CombatPhase combatPhase = new CombatPhase();
         Player player = new Player(_name);
         Console.WriteLine("ton player est " + player.Name);
         player.OnTakeDamage += player.UpdateHit;
@@ -92,7 +93,6 @@ class Program
                     Console.Clear();
                     Console.WriteLine("fight");
                   
-                    CombatPhase combatPhase = new CombatPhase();
                     combatPhase.EnterWildCombatPhase();
                   
                     key = Console.ReadKey(true);
