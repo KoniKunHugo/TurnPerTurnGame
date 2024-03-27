@@ -11,6 +11,7 @@ class CombatPhase
     {
         //We'll choose manually
         DrawCombatPhase();
+        foes.AI_Level = 2;
         Combat();
     }
 
@@ -18,6 +19,7 @@ class CombatPhase
     {
         foes.randomFoe();
         DrawCombatPhase();
+        foes.AI_Level = 1;
         Combat();
     }
 
@@ -44,7 +46,7 @@ class CombatPhase
                 }
                 if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
                 {
-                    Console.WriteLine("application quitté");
+                    Console.WriteLine("application quittï¿½");
                     return;
                 }
                 if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
@@ -83,7 +85,7 @@ class CombatPhase
             else
             {
                 //FOE ACT FIRST
-                player.TakeDamage(1);
+                player.TakeDamage(foes.Damage);
                 if (foes.Hp <= 0 || player.Hp <= 0)
                 {
                     UpdateExitCombat();
@@ -106,7 +108,7 @@ class CombatPhase
                 }
                 if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
                 {
-                    Console.WriteLine("application quitté");
+                    Console.WriteLine("application quittï¿½");
                     return;
                 }
                 if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
@@ -186,6 +188,14 @@ class CombatPhase
         if (Ability == player.SpellFour)
         {
             player.Damage = player.Damage * 2;
+        }
+    }
+
+    public void CheckCombatEnd()
+    {
+        if (foes.Hp == 0 || player.Hp == 0)
+        {
+            UpdateExitCombat();
         }
     }
 
