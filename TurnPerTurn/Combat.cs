@@ -46,7 +46,7 @@ class CombatPhase
                 }
                 if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
                 {
-                    Console.WriteLine("application quitt�");
+                    Console.WriteLine("APP QUITTED !");
                     return;
                 }
                 if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
@@ -68,16 +68,16 @@ class CombatPhase
                         Console.WriteLine(player.Hp + "Player");
                     }
 
-                    if (foes.Hp <= 0)
+                    CheckCombatEnd();
+                    if (CheckCombatEnd() == true)
                     {
-                        UpdateExitCombat();
                         break;
                     }
                     //FOE ACT SECOND
-
-                    if (player.Hp <= 0)
+                    FoesTakesAction();
+                    CheckCombatEnd();
+                    if (CheckCombatEnd() == true)
                     {
-                        UpdateExitCombat();
                         break;
                     }
                 } 
@@ -85,13 +85,14 @@ class CombatPhase
             else
             {
                 //FOE ACT FIRST
-                player.TakeDamage(foes.Damage);
-                if (foes.Hp <= 0 || player.Hp <= 0)
-                {
-                    UpdateExitCombat();
-                    break;
+                FoesTakesAction();
 
+                CheckCombatEnd();
+                if (CheckCombatEnd() == true)
+                {
+                    break;
                 }
+
                 Console.WriteLine(player.Hp + "Player");
                 //PLAYER ACT SECOND
 
@@ -106,11 +107,13 @@ class CombatPhase
                     Program.Paused = true;
                     break;
                 }
+
                 if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
                 {
                     Console.WriteLine("application quitt�");
                     return;
                 }
+
                 if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
                 {
 
@@ -120,7 +123,9 @@ class CombatPhase
                     Console.WriteLine("-" + player.SpellTwo);
                     Console.WriteLine("-" + player.SpellThree);
                     Console.WriteLine("-" + player.SpellFour);
+
                     string Temp = Console.ReadLine();
+
                     if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
                     {
                         Console.WriteLine("Attaque");
@@ -128,15 +133,38 @@ class CombatPhase
                         Console.WriteLine(foes.Hp + "Mob");
                         Console.WriteLine(player.Hp + "Player");
                     }
-                    if (foes.Hp <= 0 || player.Hp <= 0)
+
+                    CheckCombatEnd();
+                    if (CheckCombatEnd() == true)
                     {
-                        UpdateExitCombat();
                         break;
                     }
+
                 }
             }
         }
     }
+    public void FoesTakesAction()
+    {
+        if (foes.AI_Level == 1)
+        {
+            player.TakeDamage(foes.Damage);
+        }
+        if (foes.AI_Level == 2) 
+        {
+            if (player.Hp < foes.Damage)
+            {
+                Console.WriteLine("Foe Casted : Swift Blow ");
+                player.TakeDamage(foes.Damage);
+            }
+            if (player.Damage < foes.Hp)
+            {
+                Console.WriteLine("Foe Casted : Enrage ");
+                foes.Damage *= 2;
+            }
+        }
+    }
+
     public void CheckAbility(string Temp)
     {
         string Ability = Temp;
@@ -191,22 +219,23 @@ class CombatPhase
         }
     }
 
-    public void CheckCombatEnd()
+    public bool CheckCombatEnd()
     {
-        if (foes.Hp == 0 || player.Hp == 0)
+        if (foes.Hp <= 0 || player.Hp <= 0)
         {
             UpdateExitCombat();
+            return true;
         }
+        return false;
     }
 
     public void ExitCombatPhase()
     {
-        OnCombatEnd?.Invoke();
-        if (player.Hp == 0)
+        if (player.Hp <= 0)
         {
             //Kill
         }
-        else if (foes.Hp == 0)
+        else if (foes.Hp <= 0)
         {
             player.XP += 50;
             player.LevelUp();
@@ -216,10 +245,9 @@ class CombatPhase
 
     public void UpdateExitCombat()
         {
-        Program.Fight = false;
-        Program._Map = true; 
         ExitCombatPhase();
-        Console.WriteLine("Here");
+        Program.Fight = false;
+        Program._Map = true;
         OnCombatEnd -= UpdateExitCombat;
         }
 

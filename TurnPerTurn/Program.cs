@@ -171,10 +171,10 @@
                         Console.Clear();
                         Console.WriteLine(player.Allies[0].Name + " :\n");
                         Console.WriteLine("Level : " + player.Allies[0].Level);
-                        Console.WriteLine("HP : " + player.Allies[0].Hp);
+                        Console.WriteLine("HP : " + player.Allies[0].Hp + "/" + player.Allies[0].MaxHp);
                         Console.WriteLine("Damage : " + player.Allies[0].Damage);
                         Console.WriteLine("Speed : " + player.Allies[0].Speed);
-                        Console.WriteLine("Experience : " + player.Allies[0].XP + " :\n");
+                        Console.WriteLine("Experience : " + player.Allies[0].XP + " \n");
                         Console.WriteLine("Attaques :\n");
                         for (int i = 0; i < player.Attacks.Count; i++)
                         {
