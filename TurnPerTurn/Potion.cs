@@ -14,10 +14,10 @@ public class Potion : Inventory
         
     }
 
-    public override void Use()
+    public override void Use(Player p)
     {
-
-        Objects.Remove(this);
+        p.Heal(5);
+        //Objects.Remove(this);
     }
 }
 

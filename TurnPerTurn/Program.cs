@@ -57,8 +57,6 @@
         Potion potion2 = new Potion("heal");
         items.AddList(potion2, 1);
 
-        
- 
         Console.WriteLine("debut loop");
         while (true)
         { 
@@ -214,10 +212,9 @@
                         }
                         else
                         {
-                            int i = 1;
+                            int i = 0;
                             foreach (KeyValuePair<Inventory, int> kvp in items.Objects)
                             {
-                                //Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
                                 Console.Write(i + ")" + kvp.Key.Name + "  nombre : " + kvp.Value + " \n");
                                 i++;
                             }
@@ -227,8 +224,26 @@
                     if (key.Key == ConsoleKey.D0 || key.Key == ConsoleKey.NumPad0)
                     {
                         Console.Clear();
-                        //Console.WriteLine(items.Objects[0].Name);
-                        Console.WriteLine("Attaques :\n");
+                        Console.WriteLine("item :\n");
+                        Console.WriteLine(items.Objects.ElementAt(0).Key);
+                        Console.WriteLine("nombre :\n");
+                        Console.WriteLine(items.Objects.ElementAt(0).Value);
+                        Console.WriteLine(" appuyer sur ENTRER pour l'utiliser");
+
+                        key = Console.ReadKey(true);
+                        if (key.Key == ConsoleKey.Enter)
+                        {
+                            Console.WriteLine(items.Objects.ElementAt(0).Key);
+                            items.Objects.ElementAt(0).Key.Use(player);
+                            Console.WriteLine("objet usé");
+
+                            int i = 0;
+                            foreach (KeyValuePair<Inventory, int> kvp in items.Objects)
+                            {
+                                Console.Write(i + ")" + kvp.Key.Name + "  nombre : " + kvp.Value + " \n");
+                                i++;
+                            }
+                        }
                     }
 
                     if (key.Key == ConsoleKey.Escape) //escape pour quitter la pause
