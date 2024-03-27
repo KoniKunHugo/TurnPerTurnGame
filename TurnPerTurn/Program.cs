@@ -56,6 +56,8 @@
 
         Potion potion2 = new Potion("heal");
         items.AddList(potion2, 1);
+
+        
  
         Console.WriteLine("debut loop");
         while (true)
@@ -102,8 +104,6 @@
                 {
                     Console.Clear();
                     Console.WriteLine("fight");
-                    CombatPhase combatPhase = new CombatPhase();
-                    CombatPhase combatPhase = new CombatPhase();
                     combatPhase.EnterWildCombatPhase();
                 }
             }
@@ -224,6 +224,13 @@
                         }
                     }
                     key = Console.ReadKey(true);
+                    if (key.Key == ConsoleKey.D0 || key.Key == ConsoleKey.NumPad0)
+                    {
+                        Console.Clear();
+                        //Console.WriteLine(items.Objects[0].Name);
+                        Console.WriteLine("Attaques :\n");
+                    }
+
                     if (key.Key == ConsoleKey.Escape) //escape pour quitter la pause
                     {
                         paused = false;

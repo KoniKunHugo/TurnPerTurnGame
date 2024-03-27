@@ -18,7 +18,7 @@ public class Inventory
     
     }
 
-    public void AddList(Inventory cle, int valeur)
+    public void AddList(Inventory cle, int valeur) //pour ajouter un element 
     {
         if (Objects != null) 
         {
@@ -32,6 +32,26 @@ public class Inventory
                 }
             }
             Objects.Add(cle, valeur);
+        }
+        else
+        {
+            Console.WriteLine("error: list null");
+        }
+    }
+
+    public void RemoveList(Inventory cle, int valeur) //pour supprimer un element
+    {
+        if (Objects != null)
+        {
+            foreach (var kvp in Objects)
+            {
+                //kvp.Key, kvp.Value
+                if (kvp.Key.Name == cle.Name)
+                {
+                    Objects[kvp.Key] -= valeur;
+                    return;
+                }
+            }
         }
         else
         {
