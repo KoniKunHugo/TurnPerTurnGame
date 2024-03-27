@@ -59,8 +59,12 @@ public class Inventory
         }
     }
 
-    public virtual void Use()
+    public virtual void Use(Player p)
     {
-
+        p.UseItem(this);
+    }
+    public virtual void Use(Player p)
+    {
+        p.UseItem(this);
     }
 }

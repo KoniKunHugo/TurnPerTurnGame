@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-class Player : Entity
+public class Player : Entity
 {
     public string SpellOne = "KneeBreaker";
     public string SpellTwo = "Uppercut";
@@ -64,7 +64,19 @@ class Player : Entity
         Console.WriteLine(Evade);
         return;
     }
-    
+    public void Heal(int x) //pour soigner de X hp
+    {
+        this.hp += x;
+        if (hp > maxHp)
+        {
+            hp = maxHp;
+        }
+    }
+
+    internal void UseItem(Inventory inventory)
+    {
+        throw new NotImplementedException();
+    }
 
     public int MaxHp { get => maxHp; set => maxHp = value; }
     public int XP { get => xp; set => xp = value; }

@@ -15,7 +15,7 @@ public class Item : Inventory
         Name = _name;
     }
 
-    public override void Use()
+    public override void Use(Player p)
     {
         Objects.Remove(this);
     }
