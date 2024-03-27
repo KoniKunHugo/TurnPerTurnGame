@@ -33,23 +33,12 @@ class CombatPhase
         {
             if (player.Speed > foes.Speed)
             {
-                //PLAYER ACT FIRST
-                Console.WriteLine("Show them Your Moves");
-                Console.WriteLine("-" + player.SpellOne);
-                Console.WriteLine("-" + player.SpellTwo);
-                Console.WriteLine("-" + player.SpellThree);
-                Console.WriteLine("-" + player.SpellFour);
-                string Temp = Console.ReadLine();
                 ConsoleKeyInfo key = Console.ReadKey(true);
+                Console.WriteLine("Que veux tu faire ?");
+                Console.WriteLine("1)Attaquer");
+                Console.WriteLine("ESC) pause et inventaire");
+                Console.WriteLine("Ou alt A quitter");
 
-                if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
-                {
-                    Console.WriteLine("Attaque");
-                    CheckAbility(Temp);
-                    Console.WriteLine(foes.Hp + "Mob");
-                    Console.WriteLine(player.Hp + "Player");
-                }
-                
                 if (key.Key == ConsoleKey.Escape) //pause
                 {
                     Program.Paused = true;
@@ -57,23 +46,41 @@ class CombatPhase
                 }
                 if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
                 {
-                    Console.WriteLine("application quitté");
+                    Console.WriteLine("application quittï¿½");
                     return;
                 }
-
-                if (foes.Hp <= 0 || player.Hp <= 0)
+                if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
                 {
-                    UpdateExitCombat();
-                    break;
-                }
-                //FOE ACT SECOND
+                    //PLAYER ACT FIRST
+                    Console.WriteLine("Show them Your Moves");
+                    Console.WriteLine("-" + player.SpellOne);
+                    Console.WriteLine("-" + player.SpellTwo);
+                    Console.WriteLine("-" + player.SpellThree);
+                    Console.WriteLine("-" + player.SpellFour);
+                    string Temp = Console.ReadLine();
 
-                player.TakeDamage(foes.Damage);
-                if (foes.Hp <= 0 || player.Hp <= 0)
-                {
-                    UpdateExitCombat();
-                    break;
-                }
+
+                    if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
+                    {
+                        Console.WriteLine("Attaque");
+                        CheckAbility(Temp);
+                        Console.WriteLine(foes.Hp + "Mob");
+                        Console.WriteLine(player.Hp + "Player");
+                    }
+
+                    if (foes.Hp <= 0)
+                    {
+                        UpdateExitCombat();
+                        break;
+                    }
+                    //FOE ACT SECOND
+
+                    if (player.Hp <= 0)
+                    {
+                        UpdateExitCombat();
+                        break;
+                    }
+                } 
             }
             else
             {
@@ -87,30 +94,49 @@ class CombatPhase
                 }
                 Console.WriteLine(player.Hp + "Player");
                 //PLAYER ACT SECOND
-                Console.WriteLine("Show them Your Moves");
-                Console.WriteLine("-" + player.SpellOne);
-                Console.WriteLine("-" + player.SpellTwo);
-                Console.WriteLine("-" + player.SpellThree);
-                Console.WriteLine("-" + player.SpellFour);
-                string Temp = Console.ReadLine();
-                if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
+
+
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                Console.WriteLine("Que veux tu faire ?");
+                Console.WriteLine("1)Attaquer");
+                Console.WriteLine("ESC) pause et inventaire");
+
+                if (key.Key == ConsoleKey.Escape) //pause
                 {
-                    Console.WriteLine("Attaque");
-                    CheckAbility(Temp);
-                    Console.WriteLine(foes.Hp + "Mob");
-                    Console.WriteLine(player.Hp + "Player");
-                }
-                if (foes.Hp <= 0 || player.Hp <= 0)
-                {
-                    UpdateExitCombat();
+                    Program.Paused = true;
                     break;
+                }
+                if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
+                {
+                    Console.WriteLine("application quittï¿½");
+                    return;
+                }
+                if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
+                {
+
+
+                    Console.WriteLine("Show them Your Moves");
+                    Console.WriteLine("-" + player.SpellOne);
+                    Console.WriteLine("-" + player.SpellTwo);
+                    Console.WriteLine("-" + player.SpellThree);
+                    Console.WriteLine("-" + player.SpellFour);
+                    string Temp = Console.ReadLine();
+                    if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
+                    {
+                        Console.WriteLine("Attaque");
+                        CheckAbility(Temp);
+                        Console.WriteLine(foes.Hp + "Mob");
+                        Console.WriteLine(player.Hp + "Player");
+                    }
+                    if (foes.Hp <= 0 || player.Hp <= 0)
+                    {
+                        UpdateExitCombat();
+                        break;
+                    }
                 }
             }
         }
     }
-
-    
-
     public void CheckAbility(string Temp)
     {
         string Ability = Temp;

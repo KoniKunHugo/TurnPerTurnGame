@@ -13,5 +13,11 @@ public class Potion : Inventory
         Name = _name;
         
     }
+
+    public override void Use()
+    {
+
+        Objects.Remove(this);
+    }
 }
 
