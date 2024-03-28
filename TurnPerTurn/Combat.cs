@@ -71,8 +71,6 @@ class CombatPhase
                         FoesTakesAction();
                     }
 
-
-                    CheckCombatEnd();
                     if (CheckCombatEnd() == true)
                     {
                         break;
@@ -91,7 +89,6 @@ class CombatPhase
                     FoesTakesAction();
                 }
 
-                CheckCombatEnd();
                 if (CheckCombatEnd() == true)
                 {
                     break;
@@ -108,7 +105,6 @@ class CombatPhase
                 if (key.Key == ConsoleKey.Escape) //pause
                 {
                     Program.Paused = true;
-                    Skip = 1;
                     break;
                 }
 
@@ -123,7 +119,6 @@ class CombatPhase
 
                     PlayerTakesAction();
 
-                    CheckCombatEnd();
                     if (CheckCombatEnd() == true)
                     {
                         break;
@@ -151,6 +146,7 @@ class CombatPhase
         {
             Console.WriteLine("1, 2, 3 or 4");
             Thread.Sleep(500);
+            Skip = 1;
             return false;
         }
     }
