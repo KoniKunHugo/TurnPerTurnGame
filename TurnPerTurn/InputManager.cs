@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 
 public class Input
 {
-    static int cury = 180;
+    static int cury = 10;
     static int curx = 30;
     static int fight = 0;
     
