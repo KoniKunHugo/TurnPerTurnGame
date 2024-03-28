@@ -1,3 +1,10 @@
+/*Map.DrawMapTrans();
+Console.SetCursorPosition(0,0);
+Player.drawplayer();*/
+Console.WindowWidth = 240;
+Console.WindowHeight = 60;
+Console.CursorVisible = false;
+Map.MapColor();
  class Program
 {
 
@@ -67,22 +74,6 @@
                     Console.Clear();
                     Console.WriteLine("map");
                     key = Console.ReadKey(true);
-                    if (key.Key == ConsoleKey.Z)
-                    {
-
-                    }
-                    if (key.Key == ConsoleKey.S)
-                    {
-
-                    }
-                    if (key.Key == ConsoleKey.Q)
-                    {
-
-                    }
-                    if (key.Key == ConsoleKey.D)
-                    {
-
-                    }
                     if (key.Key == ConsoleKey.Escape) //pause
                     {
                         paused = true;
@@ -97,6 +88,7 @@
                         fight = true;
                         map = false;
                     }
+                    Input.IsInput();
                 }
                 while (fight && (paused == false))
                 {

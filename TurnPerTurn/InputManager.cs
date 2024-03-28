@@ -1,6 +1,7 @@
 
 using System.Dynamic;
 using System.Numerics;
+using System.Drawing;
 
 public static class Input
 {
@@ -10,10 +11,44 @@ public static class Input
     public static int Cury { get { return cury; } }
     public static int Curx { get { return curx; } }
 
+    public static void Condition()
+    {
+        string image = @"C:\Users\lsaintomer\Documents\GitHub\TurnPerTurnGame\TurnPerTurn\map.bmp";
+        Bitmap map = new Bitmap(image);
+        Color red = map.GetPixel(0, 0);
+        Color white = map.GetPixel(50, 18);
+        Color green = map.GetPixel(237, 37);
 
+        Console.SetCursorPosition(cury, curx);
+        for (int i = -1; i < 3; i++)
+        {
+            for (int j = -1; j < 6; j++)
+            {
+                if (map.GetPixel(cury + j, (curx + i )* 2) == red)
+                {
+                        Console.SetCursorPosition(cury + j, curx + i);
+                        Console.Write("\x1b[48;5;9m");
+                        Console.Write(" ");
+                }
+                else if (map.GetPixel(cury + j, (curx + i) * 2) == green)
+                {
+                        Console.SetCursorPosition(cury + j, curx + i);
+                        Console.Write("\x1b[48;5;35m");
+                        Console.Write(" ");
+                }
+                else
+                {
+                    Console.SetCursorPosition(cury + j, curx + i);
+                    Console.Write("\x1b[48;5;15m");
+                    Console.Write(" ");
+                }
+            }
+        }
+    }
 
     public static void IsInput()
     {
+
         ConsoleKeyInfo key;
         bool paused = false;
         do
@@ -22,28 +57,9 @@ public static class Input
 
             if (key.Key == ConsoleKey.UpArrow)
             {
-                if (curx > 1)
+                if (curx > 0)
                 {
-                    /*Console.SetCursorPosition(cury, curx);
-                    Console.Write(" ");
-                    curx = curx - 1;
-                    Console.SetCursorPosition(cury, curx);
-                    Console.Write("P");*/
-                    /*Console.Write(Map._map[cury,curx]);
-                    Console.Write("      ");
-                    Console.SetCursorPosition(cury, curx + 1);
-                    Console.Write("       ");
-                    Console.SetCursorPosition(cury, curx + 2);
-                    Console.Write("       ");*/
-                    Console.SetCursorPosition(cury, curx);
-                    for (int i = curx - 1; i <= curx + 3; i++)
-                    {
-                        for (int j = cury - 1; j <= cury + 7; j++)
-                        {
-                            Console.Write(Map._map[i, j]);
-                            Console.SetCursorPosition(j + 1, i);
-                        }
-                    }
+                    Condition();
                     curx = curx - 1;
                     Player.drawplayer();
                 }
@@ -51,49 +67,18 @@ public static class Input
             }
             if (key.Key == ConsoleKey.DownArrow)
             {
-                if (curx < 27)
+                if (curx < 60)
                 {
-                    /*Console.SetCursorPosition(cury, curx);
-                    Console.Write("      ");
-                    Console.SetCursorPosition(cury, curx + 1);
-                    Console.Write("       ");
-                    Console.SetCursorPosition(cury, curx + 2);
-                    Console.Write("       ");*/
-                    Console.SetCursorPosition(cury, curx);
-                    for (int i = curx - 1; i <= curx + 3; i++)
-                    {
-                        for (int j = cury - 1; j <= cury + 8; j++)
-                        {
-                            Console.Write(Map._map[i, j]);
-                            Console.SetCursorPosition(j + 1, i);
-                        }
-                    }
+                    Condition();
                     curx = curx + 1;
                     Player.drawplayer();
                 }
             }
             if (key.Key == ConsoleKey.LeftArrow)
             {
-                if (cury > 1)
+                if (cury > 0)
                 {
-                    /*Console.SetCursorPosition(cury-1, curx);
-                    Console.Write("P ");
-                    cury = cury - 1;*/
-                    /*Console.SetCursorPosition(cury, curx);
-                    Console.Write("      ");
-                    Console.SetCursorPosition(cury, curx + 1);
-                    Console.Write("       ");
-                    Console.SetCursorPosition(cury, curx + 2);
-                    Console.Write("       ");*/
-                    Console.SetCursorPosition(cury, curx);
-                    for (int i = curx; i <= curx + 3; i++)
-                    {
-                        for (int j = cury + 1; j <= cury + 6; j++)
-                        {
-                            Console.Write(Map._map[i, j]);
-                            Console.SetCursorPosition(j, i);
-                        }
-                    }
+                    Condition();
                     cury = cury - 1;
                     Player.drawplayer();
                 }
@@ -101,26 +86,9 @@ public static class Input
             }
             if (key.Key == ConsoleKey.RightArrow)
             {
-                if (cury < 113)
+                if (cury < 237)
                 {
-                    /*Console.SetCursorPosition(cury, curx);
-                    Console.Write(" P");
-                    cury = cury + 1;*/
-                    /*Console.SetCursorPosition(cury, curx);
-                    Console.Write("      ");
-                    Console.SetCursorPosition(cury, curx + 1);
-                    Console.Write("       ");
-                    Console.SetCursorPosition(cury, curx + 2);
-                    Console.Write("       ");*/
-                    Console.SetCursorPosition(cury, curx);
-                    for (int i = curx; i <= curx + 3; i++)
-                    {
-                        for (int j = cury - 1; j <= cury + 5; j++)
-                        {
-                            Console.Write(Map._map[i, j]);
-                            Console.SetCursorPosition(j + 1, i);
-                        }
-                    }
+                    Condition();
                     cury = cury + 1;
                     Player.drawplayer();
                 }
