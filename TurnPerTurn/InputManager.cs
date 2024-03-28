@@ -1,8 +1,9 @@
+
 using System.Dynamic;
 using System.Numerics;
 using System.Drawing;
 
-public class Input
+public static class Input
 {
     static int cury = 2;
     static int curx = 2;
@@ -49,9 +50,11 @@ public class Input
     {
 
         ConsoleKeyInfo key;
+        bool paused = false;
         do
         {
             key = Console.ReadKey();
+
             if (key.Key == ConsoleKey.UpArrow)
             {
                 if (curx > 0)
@@ -96,4 +99,3 @@ public class Input
     }
 
 }
-
