@@ -19,35 +19,28 @@ public class Input
         Color green = map.GetPixel(237, 37);
 
         Console.SetCursorPosition(cury, curx);
-
-        if (map.GetPixel(cury, curx*2) == red)
+        for (int i = -1; i < 3; i++)
         {
-            Console.Write("\x1b[48;5;9m      ");
-            for (int i = 0;i < 3; i++)
+            for (int j = -1; j < 6; j++)
             {
-                Console.SetCursorPosition(cury, curx + i);
-                Console.Write("\x1b[48;5;9m");
-                Console.Write(" ");
-            }
-        }
-        else if (map.GetPixel(cury,curx*2) == green)
-        {
-            Console.Write("\x1b[48;5;35m      ");
-            for (int i = 0; i < 3; i++)
-            {
-                Console.SetCursorPosition(cury, curx + i);
-                Console.Write("\x1b[48;5;35m");
-                Console.Write(" ");
-            }
-        }
-        else 
-        {
-            Console.Write("\x1b[48;5;15m      ");
-            for (int i = 0; i < 3; i++)
-            {
-                Console.SetCursorPosition(cury, curx + i);
-                Console.Write("\x1b[48;5;15m");
-                Console.Write(" ");
+                if (map.GetPixel(cury + j, (curx + i )* 2) == red)
+                {
+                        Console.SetCursorPosition(cury + j, curx + i);
+                        Console.Write("\x1b[48;5;9m");
+                        Console.Write(" ");
+                }
+                else if (map.GetPixel(cury + j, (curx + i) * 2) == green)
+                {
+                        Console.SetCursorPosition(cury + j, curx + i);
+                        Console.Write("\x1b[48;5;35m");
+                        Console.Write(" ");
+                }
+                else
+                {
+                    Console.SetCursorPosition(cury + j, curx + i);
+                    Console.Write("\x1b[48;5;15m");
+                    Console.Write(" ");
+                }
             }
         }
     }
@@ -74,7 +67,6 @@ public class Input
                 if (curx < 60)
                 {
                     Condition();
-
                     curx = curx + 1;
                     Player.drawplayer();
                 }
