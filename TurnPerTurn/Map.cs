@@ -10,7 +10,7 @@ public static class Map
    
     public static void MapColor()
     {
-        string map = File.ReadAllText(@"C:\Users\apichard\Source\Repos\KoniKunHugo\TurnPerTurnGame\TurnPerTurn\map.txt").Replace("\\x1b", "\x1b");
+        string map = File.ReadAllText(@"C:\Users\lsaintomer\Documents\GitHub\TurnPerTurnGame\TurnPerTurn\map.txt").Replace("\\x1b", "\x1b");
         Console.WriteLine(map);
         Console.SetCursorPosition(0, 0);
         Player.drawplayer();
