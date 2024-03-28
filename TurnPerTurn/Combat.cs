@@ -244,7 +244,7 @@ class CombatPhase
         if (player.Hp <= 0)
         {
             Console.WriteLine("You died");
-
+            player.Hp = 1;
         }
         else if (foes.Hp <= 0)
         {
