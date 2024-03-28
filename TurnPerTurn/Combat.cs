@@ -1,8 +1,10 @@
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Security.Cryptography.X509Certificates;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-class CombatPhase
+namespace TurnPerTurn
 {
     public event Action OnCombatEnd;
 
