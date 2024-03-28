@@ -60,16 +60,9 @@ class CombatPhase
                     Console.WriteLine("-" + player.SpellTwo);
                     Console.WriteLine("-" + player.SpellThree);
                     Console.WriteLine("-" + player.SpellFour);
-                    string Temp = Console.ReadLine();
 
-
-                    if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
-                    {
-                        Console.WriteLine("Attaque");
-                        CheckAbility(Temp);
-                        Console.WriteLine(foes.Hp + "Mob");
-                        Console.WriteLine(player.Hp + "Player");
-                    }
+                    PlayerTakesAction();
+                    
 
                     CheckCombatEnd();
                     if (CheckCombatEnd() == true)
@@ -115,7 +108,6 @@ class CombatPhase
                 Console.WriteLine("Que veux tu faire ?\n");
                 Console.WriteLine("1)Attaquer");
                 Console.WriteLine("ESC) pause et inventaire");
-                ConsoleKeyInfo key = Console.ReadKey(true);
                 Console.WriteLine("Ou alt A quitter");
                 ConsoleKeyInfo key = Console.ReadKey(true);
 
@@ -161,7 +153,8 @@ class CombatPhase
         else if (key.Key == ConsoleKey.D2 || key.Key == ConsoleKey.NumPad2) { CheckAbility(2); return true; }
         else if (key.Key == ConsoleKey.D3 || key.Key == ConsoleKey.NumPad3) { CheckAbility(3); return true; }
         else if (key.Key == ConsoleKey.D4 || key.Key == ConsoleKey.NumPad4) { CheckAbility(4); return true; }
-        else {
+        else
+        {
             Console.WriteLine("1, 2, 3 or 4");
             Thread.Sleep(500);
             return false;
