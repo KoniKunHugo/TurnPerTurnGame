@@ -13,5 +13,6 @@ public static class Map
         string map = File.ReadAllText(@"C:\Users\lsaintomer\Documents\GitHub\TurnPerTurnGame\TurnPerTurn\map.txt").Replace("\\x1b", "\x1b");
         Console.WriteLine(map);
         Console.SetCursorPosition(0, 0);
+        Player.drawplayer();
     }
 }

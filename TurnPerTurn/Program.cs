@@ -1,10 +1,6 @@
 /*Map.DrawMapTrans();
 Console.SetCursorPosition(0,0);
 Player.drawplayer();*/
-Console.WindowWidth = 240;
-Console.WindowHeight = 60;
-Console.CursorVisible = false;
-Map.MapColor();
  class Program
 {
 
@@ -27,6 +23,9 @@ Map.MapColor();
 
     static int Main(string[] args)
     {
+        Console.WindowWidth = 240;
+        Console.WindowHeight = 60;
+        Console.CursorVisible = false;
         Console.WriteLine("Choisis le nom de ton joueur");
         string _name = Console.ReadLine();
         bool isName = false;
@@ -65,14 +64,14 @@ Map.MapColor();
         items.AddList(potion2, 1);
 
         Console.WriteLine("debut loop");
+        Console.Clear();
+        Map.MapColor();
         while (true)
         { 
             while(paused == false)
             {
                 while(map && (paused == false))
                 {
-                    Console.Clear();
-                    Console.WriteLine("map");
                     key = Console.ReadKey(true);
                     if (key.Key == ConsoleKey.Escape) //pause
                     {
@@ -90,9 +89,9 @@ Map.MapColor();
                     }
                     Input.IsInput();
                 }
-                while (fight && (paused == false))
+                if (Input.Fight > 1 && (paused == false))
                 {
-                    Console.Clear();
+                    fight = true;
                     Console.WriteLine("fight");
                     combatPhase.EnterWildCombatPhase();
                 }

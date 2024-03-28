@@ -63,7 +63,7 @@ public class Inventory
     {
         p.UseItem(this);
     }
-    public virtual void Use(Player p)
+    public virtual void UseHeal(Player p)
     {
         p.UseItem(this);
     }
