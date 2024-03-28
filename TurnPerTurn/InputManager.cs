@@ -19,7 +19,7 @@ public class Input
     {
 
         Random rand = new Random();
-        string image = @"C:\Users\apichard\Source\Repos\KoniKunHugo\TurnPerTurnGame\TurnPerTurn\map.bmp";
+        string image = @"C:\Users\lsaintomer\Documents\GitHub\TurnPerTurnGame\TurnPerTurn\map.bmp";
         Bitmap map = new Bitmap(image);
         Color red = map.GetPixel(0, 0);
         Color green = map.GetPixel(237, 37);
