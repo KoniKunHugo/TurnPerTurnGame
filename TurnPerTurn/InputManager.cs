@@ -6,8 +6,8 @@ using System.Security.Cryptography;
 
 public class Input
 {
-    static int cury = 220;
-    static int curx = 2;
+    static int cury = 180;
+    static int curx = 30;
     static int fight = 0;
     
     public static int Cury { get => cury; set => cury = value; }
@@ -51,7 +51,7 @@ public class Input
                 }
             }
         }
-        if (fight > 1)
+        if (fight > 7)
         {
             Program._Map = false;
         }

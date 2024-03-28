@@ -88,7 +88,7 @@ Player.drawplayer();*/
                     }
                     Input.IsInput();
                 }
-                if (Input.Fight > 1 && (paused == false))
+                if (Input.Fight > 7 && (paused == false))
                 {
                     fight = true;
                     Console.WriteLine("fight");
@@ -102,7 +102,7 @@ Player.drawplayer();*/
                 {
                     once = false;
                     Console.Clear();
-                    Console.WriteLine("c'est en pause");
+                    Console.WriteLine("?C'est en pause");
                     Console.WriteLine("Que veux tu faire ?");
                     Console.WriteLine("1)Afficher l'équipe");
                     Console.WriteLine("2)Afficher l'inventaire");
@@ -176,7 +176,9 @@ Player.drawplayer();*/
                         paused = false;
                         equipe = false;
                         once = true;
-                        Console.WriteLine("fin pause");
+                        Console.Clear();
+                        Map.MapColor();
+                        Console.CursorVisible = false;
                     }
                     if (key.Key == ConsoleKey.Backspace) //escape pour quitter l'equipe et revenir au menu
                     {
@@ -268,7 +270,9 @@ Player.drawplayer();*/
                     {
                         paused = false;
                         inventaire = false;
-                        Console.WriteLine("fin pause");
+                        Console.Clear();
+                        Map.MapColor();
+                        Console.CursorVisible = false;
                     }
                     if (key.Key == ConsoleKey.Backspace) //escape pour quitter l'inventaire et revenir au menu
                     {
