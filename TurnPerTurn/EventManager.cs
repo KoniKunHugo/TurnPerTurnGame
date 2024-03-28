@@ -11,8 +11,6 @@ public static class EventManager
     public static event Action OnTakeDamage1;
     public static event Action OnDeath1;
 
-
-
     public static void UpadateHit1()
     {
         Console.WriteLine("oui");

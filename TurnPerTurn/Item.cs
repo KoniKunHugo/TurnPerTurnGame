@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 public class Item : Inventory
 {
-
     public
        Item(string _name)
     {

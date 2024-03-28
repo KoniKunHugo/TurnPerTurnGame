@@ -1,6 +1,3 @@
-/*Map.DrawMapTrans();
-Console.SetCursorPosition(0,0);
-Player.drawplayer();*/
  class Program
 {
     private static ConsoleKeyInfo key;

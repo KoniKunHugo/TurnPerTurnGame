@@ -5,9 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 
 class CombatPhase
 {
-    //public event Action OnCombatEnd;
-
-    public void EnterWildCombatPhase()
+     public void EnterWildCombatPhase()
     {
         Console.Clear();
         foes.randomFoe();
@@ -271,7 +269,6 @@ class CombatPhase
         ExitCombatPhase();
         Program.Fight = false;
         Program._Map = true;
-        //OnCombatEnd -= UpdateExitCombat;
     }
 
     private int Skip;

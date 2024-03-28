@@ -1,6 +1,5 @@
 public class Entity
 {
-
     protected int hp;
     protected int damage;
     protected int speed;

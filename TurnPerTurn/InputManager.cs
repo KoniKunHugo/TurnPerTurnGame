@@ -59,7 +59,6 @@ public class Input
 
     public static void IsInput()
     {
-
         ConsoleKeyInfo key;
         bool paused = false;
             key = Console.ReadKey();
