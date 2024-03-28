@@ -21,15 +21,15 @@
     static int Main(string[] args)
     {
         Console.WriteLine("Choisis le nom de ton joueur");
-        string _name = Console.ReadLine();
+        string name = Console.ReadLine();
         bool isName = false;
 
         do
         {
-            if (string.IsNullOrWhiteSpace(_name))
+            if (string.IsNullOrWhiteSpace(name))
             {
                 Console.WriteLine("erreur, rentre un nom valide");
-                _name = Console.ReadLine();
+                name = Console.ReadLine();
             }
             else
             {
@@ -40,7 +40,7 @@
         } while (isName == false);
 
         CombatPhase combatPhase = new CombatPhase();
-        Player player = new Player(_name);
+        Player player = new Player(name);
         Console.WriteLine("ton player est " + player.Name);
         player.OnTakeDamage += player.UpdateHit;
         player.OnDeath += player.UpdateDeath;
@@ -48,7 +48,6 @@
 
 
         Inventory items = new Inventory();
-        items.Objects = new Dictionary<Inventory, int>();
         Potion potion1 = new Potion("heal");
         items.AddList(potion1, 1);
         Item clé = new Item("clé");
@@ -66,23 +65,8 @@
                 {
                     Console.Clear();
                     Console.WriteLine("map");
+                   
                     key = Console.ReadKey(true);
-                    if (key.Key == ConsoleKey.Z)
-                    {
-
-                    }
-                    if (key.Key == ConsoleKey.S)
-                    {
-
-                    }
-                    if (key.Key == ConsoleKey.Q)
-                    {
-
-                    }
-                    if (key.Key == ConsoleKey.D)
-                    {
-
-                    }
                     if (key.Key == ConsoleKey.Escape) //pause
                     {
                         paused = true;
@@ -224,18 +208,44 @@
                     if (key.Key == ConsoleKey.D0 || key.Key == ConsoleKey.NumPad0)
                     {
                         Console.Clear();
-                        Console.WriteLine("item :\n");
-                        Console.WriteLine(items.Objects.ElementAt(0).Key);
+                        Console.WriteLine("potions :\n");
+                        Console.WriteLine(items.Potions.ElementAt(0).Key);
                         Console.WriteLine("nombre :\n");
-                        Console.WriteLine(items.Objects.ElementAt(0).Value);
+                        Console.WriteLine(items.Potions.ElementAt(0).Value);
                         Console.WriteLine(" appuyer sur ENTRER pour l'utiliser");
 
                         key = Console.ReadKey(true);
                         if (key.Key == ConsoleKey.Enter)
                         {
                             Console.WriteLine(items.Objects.ElementAt(0).Key);
-                            items.Objects.ElementAt(0).Key.Use(player);
-                            Console.WriteLine("objet usé");
+                            items.Objects.ElementAt(0).Key.UseHeal(potion1,player);
+                            items.RemoveList(potion1);
+                            Console.WriteLine("objet utilisé");
+
+                            int i = 0;
+                            foreach (KeyValuePair<Inventory, int> kvp in items.Objects)
+                            {
+                                Console.Write(i + ")" + kvp.Key.Name + "  nombre : " + kvp.Value + " \n");
+                                i++;
+                            }
+                        }
+                    }
+                    if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("objets :\n");
+                        Console.WriteLine(items.Items.ElementAt(0).Key);
+                        Console.WriteLine("nombre :\n");
+                        Console.WriteLine(items.Items.ElementAt(0).Value);
+                        Console.WriteLine(" appuyer sur ENTRER pour l'utiliser");
+
+                        key = Console.ReadKey(true);
+                        if (key.Key == ConsoleKey.Enter)
+                        {
+                            Console.WriteLine(items.Items.ElementAt(0).Key);
+                            items.Items.ElementAt(0).Key.Use(player);
+                            items.RemoveList(clé);
+                            Console.WriteLine("objet utilisé");
 
                             int i = 0;
                             foreach (KeyValuePair<Inventory, int> kvp in items.Objects)

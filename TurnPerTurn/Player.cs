@@ -66,11 +66,12 @@ public class Player : Entity
     }
     public void Heal(int x) //pour soigner de X hp
     {
-        this.hp += x;
+        hp += x;
         if (hp > maxHp)
         {
             hp = maxHp;
         }
+        Console.WriteLine(hp);
     }
 
     internal void UseItem(Inventory inventory)

@@ -17,6 +17,6 @@ public class Item : Inventory
 
     public override void Use(Player p)
     {
-        Objects.Remove(this);
+        
     }
 }

@@ -31,13 +31,14 @@ class CombatPhase
     {
         while (Program.Fight)
         {
+            Console.WriteLine(player.Hp + "Player");
             if (player.Speed > foes.Speed)
             {
-                ConsoleKeyInfo key = Console.ReadKey(true);
                 Console.WriteLine("Que veux tu faire ?");
                 Console.WriteLine("1)Attaquer");
                 Console.WriteLine("ESC) pause et inventaire");
                 Console.WriteLine("Ou alt A quitter");
+                ConsoleKeyInfo key = Console.ReadKey(true);
 
                 if (key.Key == ConsoleKey.Escape) //pause
                 {
@@ -52,6 +53,7 @@ class CombatPhase
                 if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
                 {
                     //PLAYER ACT FIRST
+                    Console.WriteLine(player.Hp + "Player");
                     Console.WriteLine("Show them Your Moves");
                     Console.WriteLine("-" + player.SpellOne);
                     Console.WriteLine("-" + player.SpellTwo);
@@ -92,14 +94,15 @@ class CombatPhase
                     break;
 
                 }
-                Console.WriteLine(player.Hp + "Player");
+                
                 //PLAYER ACT SECOND
 
-
-                ConsoleKeyInfo key = Console.ReadKey(true);
+                
                 Console.WriteLine("Que veux tu faire ?");
                 Console.WriteLine("1)Attaquer");
                 Console.WriteLine("ESC) pause et inventaire");
+                Console.WriteLine("Ou alt A quitter");
+                ConsoleKeyInfo key = Console.ReadKey(true);
 
                 if (key.Key == ConsoleKey.Escape) //pause
                 {
@@ -113,7 +116,7 @@ class CombatPhase
                 }
                 if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
                 {
-
+                    Console.WriteLine(player.Hp + "Player");
 
                     Console.WriteLine("Show them Your Moves");
                     Console.WriteLine("-" + player.SpellOne);
