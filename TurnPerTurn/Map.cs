@@ -15,4 +15,11 @@ public static class Map
         Console.SetCursorPosition(0, 0);
         Player.drawplayer();
     }
+
+    public static void GameOver()
+    {
+        string map = File.ReadAllText(@"C:\Users\lsaintomer\Documents\GitHub\TurnPerTurnGame\TurnPerTurn\GameOver.txt").Replace("\\x1b", "\x1b");
+        Console.WriteLine(map);
+        Console.SetCursorPosition(0, 0);
+    }
 }

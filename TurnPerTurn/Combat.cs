@@ -249,6 +249,8 @@ class CombatPhase
             Console.WriteLine("You died");
             Console.WriteLine("end fight");
             Thread.Sleep(2000);
+            Console.Clear();
+            Map.GameOver();
         }
         else if (foes.Hp <= 0)
         {
