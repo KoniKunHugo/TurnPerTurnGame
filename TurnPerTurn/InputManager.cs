@@ -48,7 +48,6 @@ public static class Input
 
     public static void IsInput()
     {
-
         ConsoleKeyInfo key;
         bool paused = false;
         do
@@ -94,8 +93,6 @@ public static class Input
                 }
             }
         } while (key.Key != ConsoleKey.Escape);
-        /*public int Cury { get => _cury; }
-        public int Curx { get => _curx; }*/
     }
 
 }
