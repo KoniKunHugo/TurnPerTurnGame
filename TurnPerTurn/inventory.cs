@@ -102,11 +102,6 @@ public class Inventory
     }
     public virtual void RemoveList(Item cle) //pour supprimer un element
     {
-        p.UseItem(this);
-    }
-    public virtual void UseHeal(Player p)
-    {
-        p.UseItem(this);
         if (items != null && objects != null)
         {
             foreach (var kvp in items)

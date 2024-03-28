@@ -132,7 +132,9 @@ Player.drawplayer();*/
                 {
                     paused = false;
                     once = true;
-                    Console.WriteLine("fin pause");
+                    Console.Clear();
+                    Map.MapColor();
+                    Console.CursorVisible = false;
                 }
                 if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
                 {

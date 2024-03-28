@@ -16,7 +16,6 @@ class CombatPhase
         Combat();
     }
 
-
     public void EnterPredeterminedCombatPhase()
     {
         //We'll choose manually
@@ -25,7 +24,7 @@ class CombatPhase
         Combat();
     }
 
-    public void DrawCombatPhase() 
+    public void DrawCombatPhase()
     {
         Console.WriteLine("------------------");
     }
@@ -33,7 +32,6 @@ class CombatPhase
     {
         while (Program.Fight)
         {
-
             DrawCombatPhase();
             //PLAYER ACT FIRST
             if (player.Speed > foes.Speed)
@@ -56,23 +54,9 @@ class CombatPhase
                 }
                 if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
                 {
-                    //PLAYER ACT FIRST
+                    if (PlayerTakesAction() == false) { Skip = 1; }
+                    Console.WriteLine(foes.Hp + "Mob");
                     Console.WriteLine(player.Hp + "Player");
-                    Console.WriteLine("Show them Your Moves");
-                    Console.WriteLine("-" + player.SpellOne);
-                    Console.WriteLine("-" + player.SpellTwo);
-                    Console.WriteLine("-" + player.SpellThree);
-                    Console.WriteLine("-" + player.SpellFour);
-                    string Temp = Console.ReadLine();
-
-
-                    if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
-                    {
-                        Console.WriteLine("Attaque");
-                        CheckAbility(Temp);
-                        Console.WriteLine(foes.Hp + "Mob");
-                        Console.WriteLine(player.Hp + "Player");
-                    }
 
                     CheckCombatEnd();
                     if (CheckCombatEnd() == true)
@@ -80,10 +64,12 @@ class CombatPhase
                         break;
                     }
                     //FOE ACT SECOND
-                    if (Skip == 1) {
+                    if (Skip == 1)
+                    {
                         Skip = 0;
                     }
-                    else {
+                    else
+                    {
                         FoesTakesAction();
                     }
 
@@ -93,12 +79,13 @@ class CombatPhase
                     {
                         break;
                     }
-                } 
+                }
             }
             else
             {
                 //FOE ACT FIRST
-                if (Skip == 1){
+                if (Skip == 1)
+                {
                     Skip = 0;
                 }
                 else
@@ -119,8 +106,6 @@ class CombatPhase
                 Console.WriteLine("1)Attaquer");
                 Console.WriteLine("ESC) pause et inventaire");
                 ConsoleKeyInfo key = Console.ReadKey(true);
-                Console.WriteLine("Ou alt A quitter");
-                ConsoleKeyInfo key = Console.ReadKey(true);
 
                 if (key.Key == ConsoleKey.Escape) //pause
                 {
@@ -128,97 +113,24 @@ class CombatPhase
                     Skip = 1;
                     break;
                 }
+
                 if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
                 {
                     Console.WriteLine("application quitt�");
                     return;
                 }
+
                 if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
                 {
-                    //PLAYER ACT FIRST
-                    Console.WriteLine(player.Hp + "Player");
-                    Console.WriteLine("Show them Your Moves");
-                    Console.WriteLine("-" + player.SpellOne);
-                    Console.WriteLine("-" + player.SpellTwo);
-                    Console.WriteLine("-" + player.SpellThree);
-                    Console.WriteLine("-" + player.SpellFour);
-                    string Temp = Console.ReadLine();
 
+                    PlayerTakesAction();
 
-                    if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
+                    CheckCombatEnd();
+                    if (CheckCombatEnd() == true)
                     {
-                        Console.WriteLine("Attaque");
-                        CheckAbility(Temp);
-                        Console.WriteLine(foes.Hp + "Mob");
-                        Console.WriteLine(player.Hp + "Player");
-                    }
-
-                    if (foes.Hp <= 0)
-                    {
-                        UpdateExitCombat();
                         break;
                     }
-                    //FOE ACT SECOND
 
-                    if (player.Hp <= 0)
-                    {
-                        UpdateExitCombat();
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                //FOE ACT FIRST
-                player.TakeDamage(foes.Damage);
-                if (foes.Hp <= 0 || player.Hp <= 0)
-                {
-                    UpdateExitCombat();
-                    break;
-
-                }
-
-                //PLAYER ACT SECOND
-
-
-                Console.WriteLine("Que veux tu faire ?");
-                Console.WriteLine("1)Attaquer");
-                Console.WriteLine("ESC) pause et inventaire");
-                Console.WriteLine("Ou alt A quitter");
-                ConsoleKeyInfo key = Console.ReadKey(true);
-
-                if (key.Key == ConsoleKey.Escape) //pause
-                {
-                    Program.Paused = true;
-                    break;
-                }
-                if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
-                {
-                    Console.WriteLine("application quitt�");
-                    return;
-                }
-                if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
-                {
-                    Console.WriteLine(player.Hp + "Player");
-
-                    Console.WriteLine("Show them Your Moves");
-                    Console.WriteLine("-" + player.SpellOne);
-                    Console.WriteLine("-" + player.SpellTwo);
-                    Console.WriteLine("-" + player.SpellThree);
-                    Console.WriteLine("-" + player.SpellFour);
-                    string Temp = Console.ReadLine();
-                    if (player.SpellOne == Temp || player.SpellTwo == Temp || player.SpellThree == Temp || player.SpellFour == Temp)
-                    {
-                        Console.WriteLine("Attaque");
-                        CheckAbility(Temp);
-                        Console.WriteLine(foes.Hp + "Mob");
-                        Console.WriteLine(player.Hp + "Player");
-                    }
-                    if (foes.Hp <= 0 || player.Hp <= 0)
-                    {
-                        UpdateExitCombat();
-                        break;
-                    }
                 }
             }
         }
@@ -237,7 +149,8 @@ class CombatPhase
         else if (key.Key == ConsoleKey.D2 || key.Key == ConsoleKey.NumPad2) { CheckAbility(2); return true; }
         else if (key.Key == ConsoleKey.D3 || key.Key == ConsoleKey.NumPad3) { CheckAbility(3); return true; }
         else if (key.Key == ConsoleKey.D4 || key.Key == ConsoleKey.NumPad4) { CheckAbility(4); return true; }
-        else {
+        else
+        {
             Console.WriteLine("1, 2, 3 or 4");
             Thread.Sleep(500);
             return false;
@@ -250,7 +163,7 @@ class CombatPhase
         {
             player.TakeDamage(foes.Damage);
         }
-        if (foes.AI_Level == 2) 
+        if (foes.AI_Level == 2)
         {
             if (player.Hp < foes.Damage)
             {
@@ -321,46 +234,45 @@ class CombatPhase
         Thread.Sleep(1500);
     }
 
-    public void CheckCombatEnd()
+    public bool CheckCombatEnd()
     {
-        if (foes.Hp == 0 || player.Hp == 0)
+        if (foes.Hp <= 0 || player.Hp <= 0)
         {
             UpdateExitCombat();
+            return true;
         }
+        return false;
     }
 
     public void ExitCombatPhase()
     {
-        OnCombatEnd?.Invoke();
-        if (player.Hp == 0)
+        if (player.Hp <= 0)
         {
-            //Kill
-            Console.WriteLine("tu est mort");
+            Console.WriteLine("You died");
+            Console.WriteLine("end fight");
+            Thread.Sleep(2000);
         }
-        else if (foes.Hp == 0)
+        else if (foes.Hp <= 0)
         {
             player.XP += 50;
             player.LevelUp();
-
+            Console.WriteLine("end fight");
+            Thread.Sleep(2000);
             Console.Clear();
-            Map.MapColor();
+            Input.Curx = 30;
+            Input.Cury = 160;
             Input.Fight = 0;
+            Map.MapColor();
         }
-        Console.WriteLine("end fight");
-        Thread.Sleep(2000);
     }
 
     public void UpdateExitCombat()
     {
+        ExitCombatPhase();
         Program.Fight = false;
         Program._Map = true;
-        ExitCombatPhase();
-        /*Input.Curx = 30;
-        Input.Cury = 160;*/
-        OnCombatEnd -= UpdateExitCombat;
-    }
         //OnCombatEnd -= UpdateExitCombat;
-        }
+    }
 
     private int Skip;
     private Player player = new Player("CLOUD !!!");
