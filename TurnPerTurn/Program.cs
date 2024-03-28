@@ -3,7 +3,6 @@ Console.SetCursorPosition(0,0);
 Player.drawplayer();*/
  class Program
 {
-
     private static ConsoleKeyInfo key;
     public ConsoleKeyInfo Key { get => key; set => key = value; }
 
