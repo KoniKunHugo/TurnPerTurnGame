@@ -7,10 +7,9 @@ using System.IO;
 
 public static class Map
 {
-   
     public static void MapColor()
     {
-        string map = File.ReadAllText(@"C:\Users\apichard\Source\Repos\KoniKunHugo\TurnPerTurnGame\TurnPerTurn\map.txt").Replace("\\x1b", "\x1b");
+        string map = File.ReadAllText("./../../../map.txt").Replace("\\x1b", "\x1b");
         Console.WriteLine(map);
         Console.SetCursorPosition(0, 0);
         Player.drawplayer();
@@ -18,7 +17,7 @@ public static class Map
 
     public static void GameOver()
     {
-        string map = File.ReadAllText(@"C:\Users\lsaintomer\Documents\GitHub\TurnPerTurnGame\TurnPerTurn\GameOver.txt").Replace("\\x1b", "\x1b");
+        string map = File.ReadAllText("./ .. / .. / .. /GameOver.txt").Replace("\\x1b", "\x1b");
         Console.WriteLine(map);
         Console.SetCursorPosition(0, 0);
     }

@@ -52,6 +52,7 @@ public class Player : Entity
     {
         if (xp >= 100)
         {
+            Console.WriteLine("Level UP");
             MaxHp += 10;
             Level += 1;
             Damage = Damage + 5;
@@ -59,11 +60,11 @@ public class Player : Entity
             Evade = Evade + 2;
             xp -= 100;
         }
-        Console.WriteLine(Level);
-        Console.WriteLine(MaxHp);
-        Console.WriteLine(Damage);
-        Console.WriteLine(Speed);
-        Console.WriteLine(Evade);
+        Console.WriteLine("Level =" +Level);
+        Console.WriteLine("PV =" +MaxHp);
+        Console.WriteLine("Damage =" +Damage);
+        Console.WriteLine("Speed =" +Speed);
+        Console.WriteLine("Evade =" +Evade);
         return;
     }
     public void Heal(int x) //pour soigner de X hp

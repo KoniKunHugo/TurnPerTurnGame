@@ -28,17 +28,19 @@ class CombatPhase
     }
     public void Combat()
     {
+        ConsoleKeyInfo key;
+        bool playerIsFast = (player.Speed >= foes.Speed);
         while (Program.Fight)
         {
             DrawCombatPhase();
             //PLAYER ACT FIRST
-            if (player.Speed > foes.Speed)
+            if (playerIsFast)
             {
                 Console.WriteLine("Que veux tu faire ?\n");
                 Console.WriteLine("1)Attaquer");
                 Console.WriteLine("ESC) pause et inventaire");
-                Console.WriteLine("Ou alt A quitter");
-                ConsoleKeyInfo key = Console.ReadKey(true);
+                Console.WriteLine("Alt A) quitter");
+                key = Console.ReadKey();
 
                 if (key.Key == ConsoleKey.Escape) //pause
                 {
@@ -52,11 +54,19 @@ class CombatPhase
                 }
                 if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
                 {
-                    if (PlayerTakesAction() == false) { Skip = 1; }
-                    Console.WriteLine(foes.Hp + "Mob");
-                    Console.WriteLine(player.Hp + "Player");
+                    do
+                    {
+                        if (PlayerTakesAction() == false)
+                        {
+                            Skip = 1;
+                            Console.WriteLine("n'oublie pas de jouer");
+                        }
+                            
+                    } while (Skip == 1);
 
-                    CheckCombatEnd();
+                    Console.WriteLine(foes.Hp + "pv Mob");
+                    Console.WriteLine(player.Hp + "pv Player");
+
                     if (CheckCombatEnd() == true)
                     {
                         break;
@@ -100,7 +110,8 @@ class CombatPhase
                 Console.WriteLine("Que veux tu faire ?\n");
                 Console.WriteLine("1)Attaquer");
                 Console.WriteLine("ESC) pause et inventaire");
-                ConsoleKeyInfo key = Console.ReadKey(true);
+                Console.WriteLine("Alt A) quitter");
+                key = Console.ReadKey();
 
                 if (key.Key == ConsoleKey.Escape) //pause
                 {
@@ -110,20 +121,30 @@ class CombatPhase
 
                 if (((key.Modifiers) == ConsoleModifiers.Alt) && (key.Key == ConsoleKey.A)) //quit
                 {
-                    Console.WriteLine("application quitt�");
+                    Console.WriteLine("application quitté");
                     return;
                 }
 
                 if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1)
                 {
 
-                    PlayerTakesAction();
+                    do
+                    {
+                        if (PlayerTakesAction() == false)
+                        {
+                            Skip = 1;
+                            Console.WriteLine("n'oublie pas de jouer");
+                        }
+
+                    } while (Skip == 1);
+
+                    Console.WriteLine("\n"+foes.Hp + "pv Mob");
+                    Console.WriteLine(player.Hp + "pv Player");
 
                     if (CheckCombatEnd() == true)
                     {
                         break;
                     }
-
                 }
             }
         }
@@ -136,17 +157,16 @@ class CombatPhase
         Console.WriteLine("- 3) " + player.SpellThree);
         Console.WriteLine("- 4) " + player.SpellFour + "\n");
 
-        ConsoleKeyInfo key = Console.ReadKey(true);
+        ConsoleKeyInfo key = Console.ReadKey();
 
-        if (key.Key == ConsoleKey.D1 || key.Key == ConsoleKey.NumPad1) { CheckAbility(1); return true; }
-        else if (key.Key == ConsoleKey.D2 || key.Key == ConsoleKey.NumPad2) { CheckAbility(2); return true; }
-        else if (key.Key == ConsoleKey.D3 || key.Key == ConsoleKey.NumPad3) { CheckAbility(3); return true; }
-        else if (key.Key == ConsoleKey.D4 || key.Key == ConsoleKey.NumPad4) { CheckAbility(4); return true; }
+        if (key.Key == ConsoleKey.A ) { CheckAbility(1); return true; }
+        else if (key.Key == ConsoleKey.Z ) { CheckAbility(2); return true; }
+        else if (key.Key == ConsoleKey.E) { CheckAbility(3); return true; }
+        else if (key.Key == ConsoleKey.R) { CheckAbility(4); return true; }
         else
         {
             Console.WriteLine("1, 2, 3 or 4");
             Thread.Sleep(500);
-            Skip = 1;
             return false;
         }
     }
@@ -157,14 +177,14 @@ class CombatPhase
         {
             player.TakeDamage(foes.Damage);
         }
-        if (foes.AI_Level == 2)
+        else if (foes.AI_Level == 2)
         {
             if (player.Hp < foes.Damage)
             {
                 Console.WriteLine("Foe Casted : Swift Blow ");
                 player.TakeDamage(foes.Damage);
             }
-            if (player.Damage < foes.Hp)
+            else
             {
                 Console.WriteLine("Foe Casted : Enrage ");
                 foes.Damage *= 2;
@@ -247,6 +267,7 @@ class CombatPhase
             Thread.Sleep(2000);
             Console.Clear();
             Map.GameOver();
+            Thread.Sleep(5000);
         }
         else if (foes.Hp <= 0)
         {
